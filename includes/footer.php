@@ -1,7 +1,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; All rights reserved by Penfolio 2023</p>
+                    <p>Copyright &copy; All rights reserved by Penfolio <?php echo date("Y"); ?></p>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

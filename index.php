@@ -18,6 +18,26 @@
 
             <div class="col-md-8">
 
+
+            <?php
+            $query = "SELECT * FROM posts";
+
+            $select_all_posts_query = mysqli_query($connection, $query);
+
+            while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
+                $post_title = $row['post_title'];
+                $post_author = $row['post_author'];
+
+                echo "<h2>
+                        <a href='#'>$post_title</a>
+                    </h2>
+                    <p class='lead'>
+                        by <a href='index.php'>$post_author</a>
+                    </p>";
+            }
+
+            ?>
+
                 <h1 class="page-header">
                     Page Heading
                     <small>Secondary Text</small>
