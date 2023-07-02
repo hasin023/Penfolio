@@ -2,21 +2,10 @@
 
 <!-- Blog Search Well -->
 
-<?php
-
-if (isset($_POST['search'])) {
-
-    $search = $_POST["search"];
-}
-
-
-
-?>
-
 
 <div class="well">
     <h4>Blog Search</h4>
-    <form action="" method="post">
+    <form action="search.php" method="post">
 
         <div class="input-group">
             <input name="search" type="text" class="form-control">
