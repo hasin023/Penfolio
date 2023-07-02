@@ -16,7 +16,7 @@
 
                 <?php
 
-                $query = "SELECT * FROM categories ORDER BY RAND() LIMIT 4";
+                $query = "SELECT * FROM categories ORDER BY RAND() LIMIT 5";
                 $select_all_categories_query = mysqli_query($connection, $query);
 
                 while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
@@ -26,7 +26,6 @@
                             <a href='#'>$cat_title</a>
                         </li>";
                 }
-
 
                 ?>
 
