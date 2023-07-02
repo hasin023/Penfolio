@@ -27,23 +27,38 @@
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
                 $post_title = $row['post_title'];
                 $post_author = $row['post_author'];
+                $post_date = $row['post_date'];
+                $post_image = $row['post_image'];
+                $post_content = $row['post_content'];
 
-                echo "<h2>
+                echo "<h1 class='page-header'>
+                        Page Heading
+                        <small>Secondary Text</small>
+                    </h1>
+                
+                    <!-- Blog Post -->
+                    <h2>
                         <a href='#'>$post_title</a>
                     </h2>
                     <p class='lead'>
                         by <a href='index.php'>$post_author</a>
-                    </p>";
+                    </p>
+                    <p><span class='glyphicon glyphicon-time'></span> Posted on $post_date</p>
+                    <hr>
+                    <p>$post_content</p>
+                    <a class='btn btn-primary' href='#'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
+
+                    <hr>";
             }
 
             ?>
 
-                <h1 class="page-header">
+                <!-- <h1 class="page-header">
                     Page Heading
                     <small>Secondary Text</small>
                 </h1>
 
-                <!-- First Blog Post -->
+                 First Blog Post
                 <h2>
                     <a href="#">Blog Post Title</a>
                 </h2>
@@ -57,7 +72,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
                 <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
-                <hr>
+                <hr> -->
 
             </div>
 
