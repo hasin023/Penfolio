@@ -27,8 +27,8 @@
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
                 $post_title = $row['post_title'];
                 $post_author = $row['post_author'];
-                $post_date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
-                $post_date = $post_date->format('F d, Y');
+                $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+                $post_date = $date->format('F d, Y');
                 $post_image = $row['post_image'];
                 $post_content = $row['post_content'];
 
@@ -37,7 +37,6 @@
                         <small>Secondary Text</small>
                     </h1>
                 
-                    <!-- Blog Post -->
                     <h2>
                         <a href='#'>$post_title</a>
                     </h2>
