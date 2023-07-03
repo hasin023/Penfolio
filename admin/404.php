@@ -1,11 +1,11 @@
-<?php include("includes/header.php"); ?>
+<?php include("includes/admin_header.php"); ?>
 
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include("includes/sidebar.php"); ?>
+        <?php include("includes/admin_sidebar.php"); ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -15,7 +15,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include("includes/topbar.php"); ?>
+                <?php include("includes/admin_topbar.php"); ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -36,4 +36,4 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php include("includes/footer.php"); ?>
+            <?php include("includes/admin_footer.php"); ?>

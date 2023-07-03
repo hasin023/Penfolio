@@ -51,7 +51,7 @@
 
             <!-- Nav Item - Categories Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="categories.php">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Categories</span></a>
             </li>

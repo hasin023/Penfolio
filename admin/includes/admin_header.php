@@ -1,5 +1,5 @@
 <?php
-
+include("../includes/db.php");
 ?>
 
 
@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin &mdash; Dashboard</title>
+    <title>Admin</title>
 
     <!-- Custom fonts-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

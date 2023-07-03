@@ -30,7 +30,7 @@
                 ?>
 
                      <li>
-                        <a href="admin_2">Admin</a>
+                        <a href="admin">Admin</a>
                     </li>
                 <!--<li>
                         <a href="#">Services</a>
