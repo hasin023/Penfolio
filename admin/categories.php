@@ -61,39 +61,15 @@
 
                         </form>
 
-                        <form action="" method="post">
+                        <?php
 
-                            <div class="form-group">
+                        if (isset($_GET['edit'])) {
 
-                            <?php
+                            include("includes/update_categories.php");
 
-                            if (isset($_GET['edit'])) {
-                                $edit_cat_id = $_GET['edit'];
-
-                                $query = "SELECT * FROM categories WHERE cat_id = {$edit_cat_id} ";
-                                $select_edit_categories = mysqli_query($connection, $query);
-
-
-                                while ($row = mysqli_fetch_assoc($select_edit_categories)) {
-                                    $cat_id = $row['cat_id'];
-                                    $cat_title = $row['cat_title'];
-
-                                    ?>
-                                    <input value="<?php if (isset($cat_title))
-                                        echo $cat_title; ?>" class="form-control bg-light border-1 small" type="text" name="cat_title">
-                                <?php }
-                            }
-
-                            ?>
-
-
-                            </div>
-
-                            <div class="form-group">
-                                <input class="btn btn-warning" type="submit" name="submit" value="Update">
-                            </div>
-
-                        </form>
+                        }
+                        ?>  
+                       
                     </div>
                     <!-- Add Categories Ended-->
 
@@ -112,7 +88,6 @@
                                         <tr>
                                             <th class="text-dark">ID</th>
                                             <th class="text-dark text-center">Category Title</th>
-                                            <!-- <th class="text-dark">Delete Category</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
