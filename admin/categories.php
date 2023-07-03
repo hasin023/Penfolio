@@ -56,7 +56,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input class="btn btn-primary" type="submit" name="submit" value="Add Category">
+                                <input class="btn btn-success" type="submit" name="submit" value="Add Category">
                             </div>
 
                         </form>
@@ -68,39 +68,54 @@
                     <!-- Add Tables -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Category Table</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
 
-                            <?php
-                            $query = "SELECT * FROM categories";
-                            $select_categories = mysqli_query($connection, $query);
-                            ?>
-
-
                                 <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Category Title</th>
+                                            <th class="text-dark">ID</th>
+                                            <th class="text-dark">Category Title</th>
+                                            <!-- <th class="text-dark">Delete Category</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                     <?php
+                                    //Showing all categories
+                                    $query = "SELECT * FROM categories";
+                                    $select_categories = mysqli_query($connection, $query);
 
                                     while ($row = mysqli_fetch_assoc($select_categories)) {
                                         $cat_id = $row['cat_id'];
                                         $cat_title = $row['cat_title'];
 
                                         echo "<tr>
-                                                <td>$cat_id</td>
-                                                <td>$cat_title</td>
+                                                <td class='text-dark'>$cat_id</td>
+                                                <td class='text-dark'>$cat_title</td>
+                                                <td><a href='categories.php?delete={$cat_id}' class='btn btn-danger'>DELETE</a></td>
                                             </tr>";
                                     }
 
                                     ?>
+
+                                    <?php
+                                    //Deleting categories
+                                    
+                                    if (isset($_GET['delete'])) {
+                                        $the_cat_id = $_GET['delete'];
+
+                                        $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id} ";
+                                        $delete_category = mysqli_query($connection, $query);
+
+                                        header("Location: categories.php");
+                                    }
+
+
+                                    ?>
+
                                         <!-- <tr>
                                             <td>01</td>
                                             <td>Comics</td>
