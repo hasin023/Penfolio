@@ -31,7 +31,20 @@
                     <?php
 
                     if (isset($_POST['submit'])) {
-                        echo "Goodbye";
+                        $cat_title = $_POST['cat_title'];
+
+                        if (empty($cat_title) || $cat_title == "") {
+                            echo "<p class='text-danger'>Invalid Title</p>";
+                        } else {
+                            $query = "INSERT INTO categories(cat_title) ";
+                            $query .= "VALUE('{$cat_title}')";
+
+                            $create_category_query = mysqli_query($connection, $query);
+
+                            if (!$create_category_query) {
+                                die("Query Faield" . mysqli_error($connection));
+                            }
+                        }
                     }
 
                     ?>
