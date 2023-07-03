@@ -16,6 +16,9 @@ include("includes/db.php");
 
     <title>Penfolio</title>
 
+    <link rel = "icon shortcut" href = "images/Penfolio.ico">
+
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 

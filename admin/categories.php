@@ -27,7 +27,16 @@
 
                     <!-- Add Categories -->
                     <div class="col-xs-6">
-                        <form action="">
+
+                    <?php
+
+                    if (isset($_POST['submit'])) {
+                        echo "Goodbye";
+                    }
+
+                    ?>
+
+                        <form action="" method="post">
 
                             <div class="form-group">
                                 <input class="form-control bg-light border-1 small" type="text" name="cat_title" placeholder="Category Title">
@@ -50,6 +59,13 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+
+                            <?php
+                            $query = "SELECT * FROM categories";
+                            $select_categories = mysqli_query($connection, $query);
+                            ?>
+
+
                                 <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -58,13 +74,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+
+                                    <?php
+
+                                    while ($row = mysqli_fetch_assoc($select_categories)) {
+                                        $cat_id = $row['cat_id'];
+                                        $cat_title = $row['cat_title'];
+
+                                        echo "<tr>
+                                                <td>$cat_id</td>
+                                                <td>$cat_title</td>
+                                            </tr>";
+                                    }
+
+                                    ?>
+                                        <!-- <tr>
                                             <td>01</td>
                                             <td>Comics</td>
                                         </tr>
                                         <tr>
                                             <td>02</td>
-                                            <td>TV Shows</td>
+                                            <td>TV Shows</td> -->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -79,8 +109,8 @@
                 </div>
                 <!-- /.container-fluid -->
 
-        </div>
-        <!-- End of Main Content -->
+            </div>
+            <!-- End of Main Content -->
 
 <!-- Footer -->
 <?php include("includes/admin_footer.php"); ?>

@@ -16,6 +16,8 @@ include("../includes/db.php");
 
     <title>Admin</title>
 
+    <link rel = "icon shortcut" href = "images/admin.ico">
+
     <!-- Custom fonts-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
