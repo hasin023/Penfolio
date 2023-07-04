@@ -76,7 +76,7 @@
 
                                     <?php showAllCategories(); ?>
 
-                                    <?php deleteCategory() ?>
+                                    <?php deleteCategory(); ?>
 
                                     </tbody>
                                 </table>
