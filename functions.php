@@ -45,6 +45,42 @@ function showAllCategories()
 }
 
 
+function showAllPosts()
+{
+    global $connection;
+
+    $query = "SELECT * FROM posts";
+    $select_posts = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_assoc($select_posts)) {
+        $post_id = $row['post_id'];
+        $post_author = $row['post_author'];
+        $post_title = $row['post_title'];
+        $post_category_id = $row['post_category_id'];
+        $post_status = $row['post_status'];
+        $post_image = $row['post_image'];
+        $post_tags = $row['post_tags'];
+        $post_comment_counts = $row['post_comment_counts'];
+        $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+        $post_date = $date->format('F d, Y');
+
+
+        echo "<tr>
+                <td class='text-dark text-center'>$post_id</td>
+                <td class='text-dark text-center'>$post_author</td>
+                <td class='text-dark text-center'>$post_title</td>
+                <td class='text-dark text-center'>$post_category_id</td>
+                <td class='text-dark text-center'>$post_status</td>
+                <td class='text-dark text-center'><img class='img-fluid' src='../images/$post_image' alt='Post_Image'></td>
+                <td class='text-dark text-center'>$post_tags</td>
+                <td class='text-dark text-center'>$post_comment_counts</td>
+                <td class='text-dark text-center'>$post_date</td>
+           </tr>";
+    }
+
+}
+
+
 function deleteCategory()
 {
     global $connection;
