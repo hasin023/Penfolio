@@ -35,7 +35,7 @@
                     $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
                     $post_date = $date->format('F d, Y');
                     $post_image = $row['post_image'];
-                    $post_content = $row['post_content'];
+                    $post_content = substr($row['post_content'], 0, 250) . "...";
 
                     echo "<h1 class='page-header'>
                             Page Heading
