@@ -36,7 +36,7 @@
                 <div id="posts_dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Post Controls</h6>
-                        <a class="collapse-item" href="#">Add Post</a>
+                        <a class="collapse-item" href="posts.php?source=add_post">Add Post</a>
                         <a class="collapse-item" href="posts.php">View Posts</a>
                     </div>
                 </div>
