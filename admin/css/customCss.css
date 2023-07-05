@@ -1,31 +1,19 @@
-.inputfile {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-.inputfile + label {
-  font-size: 0.9em;
-  padding: 0.4rem;
+.inputfile::file-selector-button {
+  font-size: 1rem;
+  padding: 0.5rem;
   font-weight: 600;
   border-radius: 5px;
   border: solid 1px #d4d4d4;
   color: rgb(90, 90, 90);
   background-color: transparent;
   display: inline-block;
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
-.inputfile:focus + label,
-.inputfile + label:hover,
-.inputfile + label:active {
+.inputfile::file-selector-button:focus,
+.inputfile::file-selector-button:hover,
+.inputfile::file-selector-button:active {
   background-color: #1ebe86;
   color: #fff;
-}
-
-.inputfile + label {
-  cursor: pointer;
 }
