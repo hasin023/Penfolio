@@ -46,6 +46,7 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
+    <script src="js/customJs.js"></script>
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
