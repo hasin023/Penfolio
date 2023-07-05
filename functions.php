@@ -44,6 +44,22 @@ function showAllCategories()
 
 }
 
+function getCategoryForPosts($post_category_id)
+{
+    global $connection;
+
+    $cat_query = "SELECT * FROM categories WHERE cat_id = {$post_category_id} ";
+    $select_categories_id = mysqli_query($connection, $cat_query);
+
+    while ($row = mysqli_fetch_assoc($select_categories_id)) {
+        $cat_id = $row['cat_id'];
+        $cat_title = $row['cat_title'];
+
+        return $cat_title;
+
+    }
+}
+
 
 function showAllPosts()
 {
@@ -68,9 +84,11 @@ function showAllPosts()
         echo "<tr>
                 <td class='text-dark text-center'>$post_id</td>
                 <td class='text-dark text-center'>$post_author</td>
-                <td class='text-dark text-center'>$post_title</td>
-                <td class='text-dark text-center'>$post_category_id</td>
-                <td class='text-dark text-center'>$post_status</td>
+                <td class='text-dark text-center'>$post_title</td>" .
+
+            "<td class='text-dark text-center'>" . getCategoryForPosts($post_category_id) . "</td>"
+
+            . "<td class='text-dark text-center'>$post_status</td>
                 <td class='text-dark text-center'><img class='img-fluid' src='../images/$post_image' alt='Post_Image'></td>
                 <td class='text-dark text-center'>$post_tags</td>
                 <td class='text-dark text-center'>$post_comment_counts</td>
