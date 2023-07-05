@@ -20,7 +20,11 @@
 
 
                 <?php
-                $query = "SELECT * FROM posts";
+                if (isset($_GET['category'])) {
+                    $the_category_id = $_GET['category'];
+                }
+
+                $query = "SELECT * FROM posts WHERE post_category_id = $the_category_id";
 
                 $select_all_posts_query = mysqli_query($connection, $query);
 
