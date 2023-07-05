@@ -22,7 +22,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">All Posts</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Posts</h1>
 
                     <!-- Add Tables -->
                     <?php
