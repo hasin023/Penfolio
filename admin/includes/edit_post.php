@@ -20,6 +20,13 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $post_date = $date->format('F d, Y');
 }
 
+
+if (isset($_POST['update_post'])) {
+
+    updatePost($the_post_id);
+
+}
+
 ?>
 
 
@@ -81,6 +88,8 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
 
     <div class="form-group">
         <img width="100" src="../images/<?php echo $post_image; ?>" alt="Post_Image">
+        <i class="fas fa-fw fa-upload"></i>
+        <input class="inputfile" id="file" type="file" name="post_image">
     </div>
 
     <div class="form-group">
@@ -88,7 +97,7 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     </div>
 
     <div class="form-group">
-        <input class="btn btn-success" type="submit" name="create_post" value="Publish Post">
+        <input class="btn btn-success" type="submit" name="update_post" value="Update Post">
     </div>
 
 </form>

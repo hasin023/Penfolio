@@ -107,6 +107,54 @@ function confirmQuery($result)
     }
 }
 
+function updatePost($the_post_id)
+{
+    global $connection;
+
+    $post_title = $_POST['post_title'];
+    $post_category_id = $_POST['post_category_id'];
+    $post_author = $_POST['post_author'];
+    $post_status = $_POST['post_status'];
+
+    $post_image = $_FILES['post_image']['name'];
+    $post_image_temp = $_FILES['post_image']['tmp_name'];
+
+    $post_tags = $_POST['post_tags'];
+    $post_content = $_POST['post_content'];
+    $post_comment_counts = 4;
+    $post_date = date('d-m-y');
+
+
+    move_uploaded_file($post_image_temp, "../images/$post_image");
+
+    if (empty($post_image)) {
+        $query = "SELECT * FROM posts WHERE post_id = {$the_post_id} ";
+        $select_image = mysqli_query($connection, $query);
+
+        while ($row = mysqli_fetch_assoc($select_image)) {
+            $post_image = $row['post_image'];
+        }
+    }
+
+    $query = "UPDATE posts SET ";
+    $query .= "post_title = '{$post_title}', ";
+    $query .= "post_category_id = '{$post_category_id}', ";
+    $query .= "post_author = '{$post_author}', ";
+    $query .= "post_status = '{$post_status}', ";
+    $query .= "post_image = '{$post_image}', ";
+    $query .= "post_tags = '{$post_tags}', ";
+    $query .= "post_content = '{$post_content}', ";
+    $query .= "post_comment_counts = '{$post_comment_counts}', ";
+    $query .= "post_date = now() ";
+    $query .= "WHERE post_id = {$the_post_id} ";
+
+    $update_post_query = mysqli_query($connection, $query);
+
+    confirmQuery($update_post_query);
+
+    header("Location: posts.php");
+}
+
 
 
 
