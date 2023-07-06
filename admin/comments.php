@@ -57,5 +57,5 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <?php include("includes/admin_footer.php"); ?>
+    <!-- Footer -->
+    <?php include("includes/admin_footer.php"); ?>
