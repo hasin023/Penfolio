@@ -101,6 +101,53 @@ function showAllPosts()
 }
 
 
+function showAllComments()
+{
+    global $connection;
+
+    $query = "SELECT * FROM comments";
+    $select_comments = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_assoc($select_comments)) {
+        $comment_id = $row['comment_id'];
+        $comment_post_id = $row['comment_post_id'];
+        $comment_author = $row['comment_author'];
+        $comment_email = $row['comment_email'];
+        $comment_content = $row['comment_content'];
+        $comment_status = $row['comment_status'];
+        $date = DateTime::createFromFormat('Y-m-d', $row['comment_date']);
+        $comment_date = $date->format('F d, Y');
+
+
+        echo "<tr>
+                <td class='text-dark text-center'>$comment_id</td>
+                <td class='text-dark text-center'>$comment_author</td>
+                <td class='text-dark text-center'>$comment_content</td>";
+
+        $post_query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
+        $select_post_title_query = mysqli_query($connection, $post_query);
+
+        while ($row = mysqli_fetch_assoc($select_post_title_query)) {
+            $post_id = $row['post_id'];
+            $post_title = $row['post_title'];
+
+            echo "<td class='text-dark text-center'><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
+        }
+
+        echo "<td class='text-dark text-center'>$comment_email</td>
+
+                <td class='text-dark text-center'>$comment_status</td>
+
+                <td class='text-dark text-center'>$comment_date</td>
+                <td width='5%'><a href='comments.php?approve={$comment_id}' class='btn btn-success'>APPROVE</a></td>
+                <td width='5%'><a href='comments.php?unapprove={$comment_id}' class='btn btn-warning'>UNAPPROVE</a></td>
+                <td width='5%'><a href='comments.php?delete={$comment_id}' class='btn btn-danger'>DELETE</a></td>
+              </tr>";
+
+    }
+}
+
+
 function deleteCategory()
 {
     global $connection;

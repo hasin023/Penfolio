@@ -44,7 +44,7 @@
 
             <!-- Nav Item - Comments -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="comments.php">
                     <i class="fas fa-fw fa-comment"></i>
                     <span>Comments</span></a>
             </li>

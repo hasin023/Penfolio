@@ -22,7 +22,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">View Posts</h1>
+                    <h1 class="h3 mb-4 text-gray-800">View Comments</h1>
 
                     <!-- Add Tables -->
                     <?php
@@ -43,7 +43,7 @@
                             break;
 
                         default:
-                            include("includes/view_all_posts.php");
+                            include("includes/view_all_comments.php");
                             break;
                     }
 
