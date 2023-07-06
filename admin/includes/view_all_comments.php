@@ -11,25 +11,13 @@
                                             <th class="text-dark text-center">ID</th>
                                             <th class="text-dark text-center">Author</th>
                                             <th class="text-dark text-center">Comment</th>
-                                            <th class="text-dark text-center">Post</th>
+                                            <th class="text-dark text-center">In Response To</th>
                                             <th class="text-dark text-center">Email</th>
                                             <th class="text-dark text-center">Status</th>
                                             <th class="text-dark text-center">Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">Miles Morales</td>
-                                            <td class="text-center">Spiderman - Across the spider-verse</td>
-                                            <td class="text-center">Movies</td>
-                                            <td class="text-center">Status</td>
-                                            <td class="text-center">Image</td>
-                                            <td class="text-center">MCU, Spiderman</td>
-                                            <td class="text-center">4</td>
-                                            <td class="text-center">09-12-2003</td>
-                                        </tr> -->
-
 
                                     <?php showAllComments(); ?>
 
@@ -48,9 +36,7 @@
                                     header("Location: comments.php");
                                 }
 
-
                                 ?>
-
                                 
                             </div>
                         </div>

@@ -20,18 +20,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">Miles Morales</td>
-                                            <td class="text-center">Spiderman - Across the spider-verse</td>
-                                            <td class="text-center">Movies</td>
-                                            <td class="text-center">Status</td>
-                                            <td class="text-center">Image</td>
-                                            <td class="text-center">MCU, Spiderman</td>
-                                            <td class="text-center">4</td>
-                                            <td class="text-center">09-12-2003</td>
-                                        </tr> -->
-
 
                                     <?php showAllPosts(); ?>
 

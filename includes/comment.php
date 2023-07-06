@@ -1,4 +1,4 @@
-<?
+<?php
 
 if (isset($_POST['create_comment'])) {
 
@@ -53,7 +53,7 @@ if (isset($_POST['create_comment'])) {
                         <div class="form-group">
                             <textarea name="comment_content" placeholder="Write your comment.." class="form-control" rows="3"></textarea>
                         </div>
-                        <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="create_comment" class="btn btn-primary">Add Comment</button>
                     </form>
                 </div>
 
