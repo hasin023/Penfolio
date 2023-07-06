@@ -44,20 +44,14 @@ if (isset($_POST['update_user'])) {
         <select class="form-control bg-light border-1 small" type="text" name="user_role">
         
         <?php
-        $one_query = "SELECT * FROM users WHERE user_id = {$the_user_id}";
-        $select_role = mysqli_query($connection, $one_query);
+        echo "<option value='{$user_role}'>" . ucfirst($user_role) . "</option>";
 
-        confirmQuery($select_role);
-
-        while ($row = mysqli_fetch_assoc($select_role)) {
-            $user_role = $row['user_role'];
-
-            echo "<option value='{$user_role}'>" . ucfirst($user_role) . "</option>";
+        if ($user_role == 'admin') {
+            echo "<option value='subscriber'>Subscriber</option>";
+        } else {
+            echo "<option value='admin'>Admin</option>";
         }
         ?>
-
-            <option value="admin">Admin</option>
-            <option value="subscriber">Subscriber</option>
         </select>
     </div>
 

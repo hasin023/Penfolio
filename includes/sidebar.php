@@ -21,6 +21,29 @@
 </div>
 
 
+<!-- Login -->
+
+
+<div class="well">
+    <h4>Login</h4>
+    <form action="includes/login.php" method="post">
+
+        <div class="form-group">
+            <input name="username" type="text" class="form-control" placeholder="Username">
+        </div>
+
+        <div class="input-group">
+            <input name="password" type="password" class="form-control" placeholder="Password">
+            <span class="input-group-btn">
+                <button name="login" class="btn btn-success" type="submit">Login</button>
+            </span>
+        </div>
+
+    </form>
+    <!-- /.input-group -->
+</div>
+
+
 
 
 
@@ -41,7 +64,6 @@
         <div class="col-lg-12">
             <ul class="list-unstyled">
 
-
             <?php
 
             while ($row = mysqli_fetch_assoc($select_categories_sidebar)) {
@@ -55,14 +77,6 @@
 
             ?>
 
-                <!-- <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li> -->
             </ul>
         </div>
     </div>
