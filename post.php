@@ -61,7 +61,7 @@
                 ?>
 
                 <!-- Blog Comments -->
-                <?php include("includes/comments.php"); ?>
+                <?php include("includes/comment.php"); ?>
                 
             </div>
 
