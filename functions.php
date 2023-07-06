@@ -219,6 +219,36 @@ function updatePost($the_post_id)
 }
 
 
+function showAllUsers()
+{
+    global $connection;
+
+    $query = "SELECT * FROM users";
+    $select_users = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_assoc($select_users)) {
+        $user_id = $row['user_id'];
+        $username = $row['username'];
+        $user_firstname = $row['user_firstname'];
+        $user_lastname = $row['user_lastname'];
+        $user_email = $row['user_email'];
+        $user_image = $row['user_image'];
+        $user_role = $row['user_role'];
+
+    }
+
+    echo "<tr>
+            <td class='text-dark text-center'>$user_id</td>
+            <td class='text-dark text-center'>$username</td>
+            <td class='text-dark text-center'>$user_firstname</td>
+            <td class='text-dark text-center'>$user_lastname</td>
+            <td class='text-dark text-center'>$user_email</td>
+            <td class='text-dark text-center'>$user_role</td>
+            <td width='5%'><a href='users.php?source=edit_user&u_id={$user_id}' class='btn btn-warning'>EDIT</a></td>
+            <td width='5%'><a href='users.php?delete={$user_id}' class='btn btn-danger'>DELETE</a></td>
+          </tr>";
+
+}
 
 
 ?>

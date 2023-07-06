@@ -22,7 +22,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">View Comments</h1>
+                    <h1 class="h3 mb-4 text-gray-800">View Users</h1>
 
                     <!-- Add Tables -->
                     <?php
@@ -34,16 +34,16 @@
                     }
 
                     switch ($source) {
-                        // case 'add_post';
-                        //     include("includes/add_comment.php");
-                        //     break;
-                    
-                        // case 'edit_post';
-                        //     include("includes/edit_comment.php");
-                        //     break;
-                    
+                        case 'add_post';
+                            include("includes/add_user.php");
+                            break;
+
+                        case 'edit_post';
+                            include("includes/edit_user.php");
+                            break;
+
                         default:
-                            include("includes/view_all_comments.php");
+                            include("includes/view_all_users.php");
                             break;
                     }
 

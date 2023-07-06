@@ -77,9 +77,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">User Controls:</h6>
-                        <a class="collapse-item" href="#">Some User</a>
-                        <a class="collapse-item" href="#">Some User</a>
-                        <a class="collapse-item" href="#">Some User</a>
+                        <a class="collapse-item" href="users.php?source=add_user">Add User</a>
+                        <a class="collapse-item" href="users.php">View Users</a>
                     </div>
                 </div>
             </li>
