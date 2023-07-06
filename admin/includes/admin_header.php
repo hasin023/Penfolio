@@ -26,7 +26,7 @@
 
     <!-- Custom styles-->
     <link href="css/customCss.css" rel="stylesheet">
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/admin_style.min.css" rel="stylesheet">
 
 </head>
 
