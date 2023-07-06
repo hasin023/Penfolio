@@ -235,9 +235,7 @@ function showAllUsers()
         $user_image = $row['user_image'];
         $user_role = $row['user_role'];
 
-    }
-
-    echo "<tr>
+        echo "<tr>
             <td class='text-dark text-center'>$user_id</td>
             <td class='text-dark text-center'>$username</td>
             <td class='text-dark text-center'>$user_firstname</td>
@@ -247,6 +245,8 @@ function showAllUsers()
             <td width='5%'><a href='users.php?source=edit_user&u_id={$user_id}' class='btn btn-warning'>EDIT</a></td>
             <td width='5%'><a href='users.php?delete={$user_id}' class='btn btn-danger'>DELETE</a></td>
           </tr>";
+
+    }
 
 }
 
