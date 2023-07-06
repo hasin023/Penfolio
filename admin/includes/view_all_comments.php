@@ -25,6 +25,31 @@
                                 </table>
 
                                 <?php
+
+                                if (isset($_GET['approve'])) {
+                                    $comment_id = $_GET['approve'];
+
+                                    $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = {$comment_id} ";
+                                    $approve_query = mysqli_query($connection, $query);
+
+                                    confirmQuery($approve_query);
+
+                                    header("Location: comments.php");
+                                }
+
+
+                                if (isset($_GET['unapprove'])) {
+                                    $comment_id = $_GET['unapprove'];
+
+                                    $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = {$comment_id} ";
+                                    $unapprove_query = mysqli_query($connection, $query);
+
+                                    confirmQuery($unapprove_query);
+
+                                    header("Location: comments.php");
+                                }
+
+
                                 if (isset($_GET['delete'])) {
                                     $comment_id = $_GET['delete'];
 
