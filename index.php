@@ -20,7 +20,7 @@
 
 
                 <?php
-                $query = "SELECT * FROM posts";
+                $query = "SELECT * FROM posts WHERE post_status = 'published'";
 
                 $select_all_posts_query = mysqli_query($connection, $query);
 
@@ -32,10 +32,14 @@
                     $post_date = $date->format('F d, Y');
                     $post_image = $row['post_image'];
                     $post_content = substr($row['post_content'], 0, 250) . "...";
+                    $post_status = $row['post_status'];
 
-                    echo "<h1 class='page-header'>
-                            Page Heading
-                            <small>Secondary Text</small>
+                    if ($post_status !== 'published') {
+                        echo "<h1 class='text-center'>No Posts Published</h1>";
+                    } else {
+                        echo "<h1 class='page-header'>
+                        Page Heading
+                        <small>Secondary Text</small>
                         </h1>
                     
                         <h2>
@@ -52,6 +56,8 @@
                         <a class='btn btn-primary' href='post.php?p_id=$post_id'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
 
                         <hr>";
+                    }
+
                 }
 
                 ?>

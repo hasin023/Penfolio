@@ -70,6 +70,8 @@
                                         <tr>
                                             <th class="text-dark">ID</th>
                                             <th class="text-dark text-center">Category Title</th>
+                                            <th class="text-dark text-center">Edit</th>
+                                            <th class="text-dark text-center">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>

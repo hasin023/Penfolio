@@ -17,6 +17,8 @@
                         <th class="text-dark text-center">Tags</th>
                         <th class="text-dark text-center">Comments</th>
                         <th class="text-dark text-center">Published</th>
+                        <th class="text-dark text-center">Edit</th>
+                        <th class="text-dark text-center">Delete</th>
                     </tr>
                 </thead>
                 <tbody>

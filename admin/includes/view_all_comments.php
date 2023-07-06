@@ -15,6 +15,9 @@
                         <th class="text-dark text-center">Email</th>
                         <th class="text-dark text-center">Status</th>
                         <th class="text-dark text-center">Date</th>
+                        <th class="text-dark text-center">Approve</th>
+                        <th class="text-dark text-center">Unapprove</th>
+                        <th class="text-dark text-center">Delete</th>
                     </tr>
                 </thead>
                 <tbody>

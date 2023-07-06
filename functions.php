@@ -186,7 +186,6 @@ function updatePost($the_post_id)
 
     $post_tags = $_POST['post_tags'];
     $post_content = $_POST['post_content'];
-    $post_comment_counts = 4;
     $post_date = date('d-m-y');
 
 
@@ -209,7 +208,6 @@ function updatePost($the_post_id)
     $query .= "post_image = '{$post_image}', ";
     $query .= "post_tags = '{$post_tags}', ";
     $query .= "post_content = '{$post_content}', ";
-    $query .= "post_comment_counts = '{$post_comment_counts}', ";
     $query .= "post_date = now() ";
     $query .= "WHERE post_id = {$the_post_id} ";
 
