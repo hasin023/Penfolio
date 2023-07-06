@@ -242,7 +242,8 @@ function showAllUsers()
             <td class='text-dark text-center'>$user_lastname</td>
             <td class='text-dark text-center'>$user_email</td>
             <td class='text-dark text-center'>$user_role</td>
-            <td width='5%'><a href='users.php?source=edit_user&u_id={$user_id}' class='btn btn-warning'>EDIT</a></td>
+            <td width='5%'><a href='users.php?change_to_admin={$user_id}' class='btn btn-success'>Admin</a></td>
+            <td width='5%'><a href='users.php?change_to_sub={$user_id}' class='btn btn-warning'>Subscriber</a></td>
             <td width='5%'><a href='users.php?delete={$user_id}' class='btn btn-danger'>DELETE</a></td>
           </tr>";
 

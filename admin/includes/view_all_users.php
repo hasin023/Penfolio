@@ -26,6 +26,31 @@
             </table>
 
             <?php
+
+            if (isset($_GET['change_to_admin'])) {
+                $user_id = $_GET['change_to_admin'];
+
+                $query = "UPDATE users SET user_role = 'admin' WHERE user_id = {$user_id} ";
+                $admin_query = mysqli_query($connection, $query);
+
+                confirmQuery($admin_query);
+
+                header("Location: users.php");
+            }
+
+
+            if (isset($_GET['change_to_sub'])) {
+                $user_id = $_GET['change_to_sub'];
+
+                $query = "UPDATE users SET user_role = 'subscriber' WHERE user_id = {$user_id} ";
+                $sub_query = mysqli_query($connection, $query);
+
+                confirmQuery($sub_query);
+
+                header("Location: users.php");
+            }
+
+
             if (isset($_GET['delete'])) {
                 $user_id = $_GET['delete'];
 
