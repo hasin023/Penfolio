@@ -243,12 +243,49 @@ function showAllUsers()
             <td class='text-dark text-center'>$user_email</td>
             <td class='text-dark text-center'>$user_role</td>
             <td width='5%'><a href='users.php?change_to_admin={$user_id}' class='btn btn-success'>Admin</a></td>
-            <td width='5%'><a href='users.php?change_to_sub={$user_id}' class='btn btn-warning'>Subscriber</a></td>
+            <td width='5%'><a href='users.php?change_to_sub={$user_id}' class='btn btn-primary'>Subscriber</a></td>
+            <td width='5%'><a href='users.php?source=edit_user&u_id={$user_id}' class='btn btn-warning'>EDIT</a></td>
             <td width='5%'><a href='users.php?delete={$user_id}' class='btn btn-danger'>DELETE</a></td>
           </tr>";
 
     }
 
+}
+
+
+function updateUser($the_user_id)
+{
+    global $connection;
+
+    $user_firstname = $_POST['user_firstname'];
+    $user_lastname = $_POST['user_lastname'];
+    $user_role = $_POST['user_role'];
+
+    // $user_image = $_FILES['user_image']['name'];
+    // $user_image_temp = $_FILES['user_image']['tmp_name'];
+
+    $username = $_POST['username'];
+    $user_email = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
+
+    // $user_date = date('d-m-y');
+
+    // move_uploaded_file($user_image_temp, "../images/$user_image");
+
+    $query = "UPDATE users SET ";
+    $query .= "username = '{$username}', ";
+    $query .= "user_password = '{$user_password}', ";
+    $query .= "user_firstname = '{$user_firstname}', ";
+    $query .= "user_lastname = '{$user_lastname}', ";
+    $query .= "user_email = '{$user_email}', ";
+    $query .= "user_role = '{$user_role}' ";
+    $query .= "WHERE user_id = {$the_user_id} ";
+
+    $update_user_query = mysqli_query($connection, $query);
+
+    confirmQuery($update_user_query);
+
+    header("Location: users.php");
 }
 
 

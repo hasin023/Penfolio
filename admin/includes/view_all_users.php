@@ -14,6 +14,8 @@
                         <th class="text-dark text-center">Lastname</th>
                         <th class="text-dark text-center">Email</th>
                         <th class="text-dark text-center">Role</th>
+                        <th class="text-dark text-center">Admin</th>
+                        <th class="text-dark text-center">Subscriber</th>
                         <th class="text-dark text-center">Edit</th>
                         <th class="text-dark text-center">Delete</th>
                     </tr>

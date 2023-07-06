@@ -1,122 +1,87 @@
 <?php
 
 if (isset($_GET['u_id'])) {
-    $the_post_id = $_GET['u_id'];
+
+    $the_user_id = $_GET['u_id'];
+
 }
 
-$query = "SELECT * FROM posts WHERE post_id = {$the_post_id}";
-$select_posts_by_id = mysqli_query($connection, $query);
+$query = "SELECT * FROM users WHERE user_id = {$the_user_id}";
+$select_users_query = mysqli_query($connection, $query);
 
-while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
-    $post_category_id = $row['post_category_id'];
-    $post_title = $row['post_title'];
-    $post_author = $row['post_author'];
-    $post_status = $row['post_status'];
-    $post_image = $row['post_image'];
-    $post_tags = $row['post_tags'];
-    $post_content = $row['post_content'];
-    $post_comment_counts = $row['post_comment_counts'];
-    $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
-    $post_date = $date->format('F d, Y');
+while ($row = mysqli_fetch_assoc($select_users_query)) {
+    $user_id = $row['user_id'];
+    $username = $row['username'];
+    $user_password = $row['user_password'];
+    $user_firstname = $row['user_firstname'];
+    $user_lastname = $row['user_lastname'];
+    $user_email = $row['user_email'];
+    $user_image = $row['user_image'];
+    $user_role = $row['user_role'];
+
 }
 
+if (isset($_POST['update_user'])) {
 
-if (isset($_POST['update_post'])) {
-
-    updatePost($the_post_id);
+    updateUser($the_user_id);
 
 }
 
 ?>
 
 
-
 <form action="" method="post" enctype="multipart/form-data">
 
     <div class="form-group">
-        <input value="<?php echo $post_title; ?>" class="form-control bg-light border-1 small" type="text" name="post_title" placeholder="Title">
-    </div>
-    
-    <div class="form-group">
-        <select class="form-control bg-light border-1 small" type="text" name="post_category_id">
-
-        <?php
-        $one_query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
-        $select_category = mysqli_query($connection, $one_query);
-
-        confirmQuery($select_category);
-
-        while ($row = mysqli_fetch_assoc($select_category)) {
-            $cat_id = $row['cat_id'];
-            $cat_title = $row['cat_title'];
-
-            echo "<option value='{$cat_id}'>{$cat_title}</option>";
-        }
-        ?>
-
-        <?php
-        $query = "SELECT * FROM categories";
-        $select_categories = mysqli_query($connection, $query);
-
-        confirmQuery($select_categories);
-
-        while ($row = mysqli_fetch_assoc($select_categories)) {
-            $cat_id = $row['cat_id'];
-            $cat_title = $row['cat_title'];
-
-            echo "<option value='{$cat_id}'>{$cat_title}</option>";
-        }
-        ?>
-        </select>
+        <input value="<?php echo $user_firstname; ?>" class="form-control bg-light border-1 small" type="text" name="user_firstname" placeholder="First Name">
     </div>
 
     <div class="form-group">
-        <input value="<?php echo $post_author; ?>" class="form-control bg-light border-1 small" type="text" name="post_author" placeholder="Author">
+        <input value="<?php echo $user_lastname; ?>" class="form-control bg-light border-1 small" type="text" name="user_lastname" placeholder="Last Name">
     </div>
 
-    <div class="form-group">
-        <select class="form-control bg-light border-1 small" type="text" name="post_status">
-            <option value="none">Select Status</option>
-            <option value="draft">Draft</option>
-            <option value="published">Published</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <input value="<?php echo $post_tags; ?>" class="form-control bg-light border-1 small" type="text" name="post_tags" placeholder="Tags">
-    </div>
-
-    <div class="form-group">
-        <img width="100" src="../images/<?php echo $post_image; ?>" alt="Post_Image">
-        <i class="fas fa-fw fa-upload"></i>
-        <input class="inputfile" id="file" type="file" name="post_image">
-    </div>
-
-    <div class="form-group">
-        <textarea text="<?php echo $post_content; ?>" class="form-control bg-light border-1 small" name="post_content" id="" placeholder="Write the contents of the post.." cols="30" rows="10"><?php echo $post_content; ?></textarea>
-    </div>
-
-    <div class="form-group">
-        <input class="btn btn-success" type="submit" name="update_post" value="Update Post">
-    </div>
-
-        <!-- <div class="form-group">
+     <div class="form-group">
         <select class="form-control bg-light border-1 small" type="text" name="user_role">
-        <option value="none">Select Role</option>
+        
         <?php
-        $query = "SELECT * FROM users";
-        $select_roles = mysqli_query($connection, $query);
+        $one_query = "SELECT * FROM users WHERE user_id = {$the_user_id}";
+        $select_role = mysqli_query($connection, $one_query);
 
-        confirmQuery($select_roles);
+        confirmQuery($select_role);
 
-        while ($row = mysqli_fetch_assoc($select_roles)) {
-            $user_id = $row['user_id'];
+        while ($row = mysqli_fetch_assoc($select_role)) {
             $user_role = $row['user_role'];
 
-            echo "<option value='{$user_id}'>{$user_role}</option>";
+            echo "<option value='{$user_role}'>" . ucfirst($user_role) . "</option>";
         }
         ?>
+
+            <option value="admin">Admin</option>
+            <option value="subscriber">Subscriber</option>
         </select>
-    </div> -->
+    </div>
+
+
+
+    <div class="form-group">
+        <input value="<?php echo $username; ?>" class="form-control bg-light border-1 small" type="text" name="username" placeholder="Username">
+    </div>
+
+    <div class="form-group">
+        <input value="<?php echo $user_email; ?>" class="form-control bg-light border-1 small" type="email" name="user_email" placeholder="Email">
+    </div>
+
+    <div class="form-group">
+        <input class="form-control bg-light border-1 small" type="password" name="user_password" placeholder="Password">
+    </div>
+
+    <div class="form-group">
+        <i class="fas fa-fw fa-upload"></i>
+        <input class="inputfile" id="file" type="file" name="user_image">
+    </div>
+
+    <div class="form-group">
+        <input class="btn btn-warning" type="submit" name="update_user" value="Update User">
+    </div>
 
 </form>
