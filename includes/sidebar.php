@@ -21,35 +21,15 @@
 </div>
 
 
-<!-- Login -->
-
+<!-- Login Page -->
 
 <div class="well">
-    <h4>Login</h4>
-    <form action="includes/login.php" method="post">
-
-        <div class="form-group">
-            <input name="username" type="text" class="form-control" placeholder="Username">
-        </div>
-
-        <div class="input-group">
-            <input name="password" type="password" class="form-control" placeholder="Password">
-            <span class="input-group-btn">
-                <button name="login" class="btn btn-success" type="submit">Login</button>
-            </span>
-        </div>
-
-    </form>
-    <!-- /.input-group -->
+    <h4 class="text-center">Sign in to your account?</h4>
+    <a href="includes/login.php" class="btn btn-block btn-warning">LOGIN</a>
 </div>
 
 
-
-
-
 <!-- Blog Categories Well -->
-
-
 
 <div class="well">
 

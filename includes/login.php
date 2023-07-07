@@ -1,5 +1,54 @@
 <?php include("db.php"); ?>
 
+<?php
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    //cleaning up the data
+    $username = mysqli_real_escape_string($connection, $username);
+    $password = mysqli_real_escape_string($connection, $password);
+
+    //query to get the salt
+    // $query = "SELECT randSalt FROM users";
+    // $select_randsalt_query = mysqli_query($connection, $query);
+    // if (!$select_randsalt_query) {
+    //     die("Query Failed" . mysqli_error($connection));
+    // }
+
+    // $row = mysqli_fetch_array($select_randsalt_query);
+    // $salt = $row['randSalt'];
+    // $password = crypt($password, $salt);
+
+    //query to check if the user exists
+    $query = "SELECT * FROM users WHERE username = '{$username}' AND user_password = '{$password}'";
+    $select_user_query = mysqli_query($connection, $query);
+    if (!$select_user_query) {
+        die("Query Failed" . mysqli_error($connection));
+    }
+
+    $row = mysqli_fetch_array($select_user_query);
+    $db_user_id = $row['user_id'];
+    $db_user_firstname = $row['user_firstname'];
+    $db_user_lastname = $row['user_lastname'];
+    $db_user_role = $row['user_role'];
+
+    if (mysqli_num_rows($select_user_query) == 0) {
+        header("Location: ../index.php");
+    } else {
+        $_SESSION['username'] = $username;
+        $_SESSION['firstname'] = $db_user_firstname;
+        $_SESSION['lastname'] = $db_user_lastname;
+        $_SESSION['user_role'] = $db_user_role;
+        header("Location: ../admin/index.php");
+    }
+
+    //session_destroy();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,31 +94,29 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="text" name="username" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
-                                        </div>
-                                        <a href="index.php" class="btn btn-success btn-user btn-block">
-                                            Login
-                                        </a>
+                                        </div> -->
+                                        <input name="login" type="submit" value="Login" class="btn btn-success btn-user btn-block"></input>
                                         <hr>
-                                        <a href="index.php" class="btn btn-google btn-user btn-block">
+                                        <a href="#" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
-                                        <a href="index.php" class="btn btn-facebook btn-user btn-block">
+                                        <a href="#" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
                                     </form>
