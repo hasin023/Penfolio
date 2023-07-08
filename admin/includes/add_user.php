@@ -13,6 +13,8 @@ if (isset($_POST['create_user'])) {
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
 
+    //NEED TO MAKE THE PICTURE SQUARE AND SELECT THE MIDDLE PART BEFORE COPYING IT TO THE IMAGES FOLDER
+
     move_uploaded_file($user_image_temp, "images/users/$user_image");
 
     $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_role, user_image) ";

@@ -268,6 +268,8 @@ function updateUser($the_user_id)
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
 
+    //NEED TO MAKE THE PICTURE SQUARE AND SELECT THE MIDDLE PART BEFORE COPYING IT TO THE IMAGES FOLDER
+
     move_uploaded_file($user_image_temp, "images/users/$user_image");
 
     $query = "UPDATE users SET ";
@@ -283,6 +285,10 @@ function updateUser($the_user_id)
     $update_user_query = mysqli_query($connection, $query);
 
     confirmQuery($update_user_query);
+
+    $_SESSION['username'] = $username;
+    $_SESSION['user_image'] = $user_image;
+
 
     header("Location: users.php");
 }
