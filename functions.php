@@ -261,16 +261,14 @@ function updateUser($the_user_id)
     $user_lastname = $_POST['user_lastname'];
     $user_role = $_POST['user_role'];
 
-    // $user_image = $_FILES['user_image']['name'];
-    // $user_image_temp = $_FILES['user_image']['tmp_name'];
+    $user_image = $_FILES['user_image']['name'];
+    $user_image_temp = $_FILES['user_image']['tmp_name'];
 
     $username = $_POST['username'];
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
 
-    // $user_date = date('d-m-y');
-
-    // move_uploaded_file($user_image_temp, "../images/$user_image");
+    move_uploaded_file($user_image_temp, "images/users/$user_image");
 
     $query = "UPDATE users SET ";
     $query .= "username = '{$username}', ";
@@ -279,6 +277,7 @@ function updateUser($the_user_id)
     $query .= "user_lastname = '{$user_lastname}', ";
     $query .= "user_email = '{$user_email}', ";
     $query .= "user_role = '{$user_role}' ";
+    $query .= "user_image = '{$user_image}'";
     $query .= "WHERE user_id = {$the_user_id} ";
 
     $update_user_query = mysqli_query($connection, $query);

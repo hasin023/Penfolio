@@ -6,20 +6,18 @@ if (isset($_POST['create_user'])) {
     $user_lastname = $_POST['user_lastname'];
     $user_role = $_POST['user_role'];
 
-    // $user_image = $_FILES['user_image']['name'];
-    // $user_image_temp = $_FILES['user_image']['tmp_name'];
+    $user_image = $_FILES['user_image']['name'];
+    $user_image_temp = $_FILES['user_image']['tmp_name'];
 
     $username = $_POST['username'];
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
 
-    // $user_date = date('d-m-y');
+    move_uploaded_file($user_image_temp, "images/users/$user_image");
 
-    // move_uploaded_file($user_image_temp, "../images/$user_image");
+    $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_role, user_image) ";
 
-    $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_role) ";
-
-    $query .= "VALUES('{$username}', '{$user_password}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_role}') ";
+    $query .= "VALUES('{$username}', '{$user_password}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_role}', '{$user_image}') ";
 
     $create_user_query = mysqli_query($connection, $query);
 

@@ -66,7 +66,7 @@ if (isset($_POST['update_user'])) {
     </div>
 
     <div class="form-group">
-        <input class="form-control bg-light border-1 small" type="password" name="user_password" placeholder="Password">
+        <input value="<?php echo $user_password; ?>" class="form-control bg-light border-1 small" type="password" name="user_password" placeholder="Password">
     </div>
 
     <div class="form-group">
