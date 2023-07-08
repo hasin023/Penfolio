@@ -48,7 +48,7 @@ if (isset($_SESSION['username'])) {
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="images/users/<?php echo $user_image; ?>" alt="Admin Image" class="rounded" width="160">
+                    <img src="images/users/<?php echo $user_image; ?>" alt="Admin Image" class="img-profile rounded-circle" width="150">
                     <div class="mt-3">
                       <h4><?php echo $user_firstname . " " . $user_lastname; ?></h4>
                       <!-- <p class="text-secondary mb-1">Full Stack Developer</p>

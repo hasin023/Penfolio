@@ -276,8 +276,8 @@ function updateUser($the_user_id)
     $query .= "user_firstname = '{$user_firstname}', ";
     $query .= "user_lastname = '{$user_lastname}', ";
     $query .= "user_email = '{$user_email}', ";
-    $query .= "user_role = '{$user_role}' ";
-    $query .= "user_image = '{$user_image}'";
+    $query .= "user_role = '{$user_role}', ";
+    $query .= "user_image = '{$user_image}' ";
     $query .= "WHERE user_id = {$the_user_id} ";
 
     $update_user_query = mysqli_query($connection, $query);
