@@ -10,10 +10,9 @@ if (!isset($_SESSION['user_role'])) {
     header("Location: ../404.php");
 } else if (isset($_SESSION['user_role'])) {
     if ($_SESSION['user_role'] !== 'admin') {
-        header("Location: ../404.php");
+        header("Location: ../index.php");
     }
 }
-
 
 ?>
 

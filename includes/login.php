@@ -35,7 +35,10 @@ if (isset($_POST['login'])) {
     $db_user_role = $row['user_role'];
 
     if (mysqli_num_rows($select_user_query) == 0) {
-        header("Location: ../index.php");
+        // echo '<script type="text/javascript">';
+        // echo ' alert("Username or Password incorrect!")';
+        // echo '</script>';
+        header("Location: ../404.php");
     } else {
         $_SESSION['username'] = $username;
         $_SESSION['firstname'] = $db_user_firstname;
@@ -44,7 +47,6 @@ if (isset($_POST['login'])) {
         header("Location: ../admin/index.php");
     }
 
-    //session_destroy();
 }
 
 

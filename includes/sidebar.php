@@ -22,9 +22,24 @@
 
 
 <!-- Login Page -->
+<?php
 
-<div class="well">
-    <h4 class="text-center">Sign in to your account?</h4>
+$style = "";
+$text = "Sign in to your account?";
+
+if (isset($_SESSION['user_role'])) {
+    if ($_SESSION['user_role'] == 'admin') {
+        $style = "style='display:none;'";
+    } else if ($_SESSION['user_role'] !== 'admin') {
+        $text = "Sign in to your Admin account?";
+        $style = "style='display:block;'";
+    }
+}
+
+?>
+
+<div class="well" <?php echo $style; ?>>
+    <h4 class="text-center"><?php echo $text; ?></h4>
     <a href="includes/login.php" class="btn btn-block btn-warning">LOGIN</a>
 </div>
 
