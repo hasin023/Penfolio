@@ -14,6 +14,7 @@ if (isset($_POST['create_user'])) {
     $user_password = $_POST['user_password'];
 
     //NEED TO MAKE THE PICTURE SQUARE AND SELECT THE MIDDLE PART BEFORE COPYING IT TO THE IMAGES FOLDER
+    // cropImage($user_image_temp, 500, 500);
 
     move_uploaded_file($user_image_temp, "images/users/$user_image");
 
