@@ -68,7 +68,7 @@ if (isset($_POST['register'])) {
             echo ' alert("Registration Successful!")';
             echo '</script>';
 
-            header("Location: login.php");
+            // header("Location: login.php");
         }
     }
 

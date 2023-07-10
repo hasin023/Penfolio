@@ -38,7 +38,7 @@ function showAllCategories()
                 <td width='10%' class='text-dark'>$cat_id</td>
                 <td class='text-dark'>$cat_title</td>
                 <td width='5%'><a href='categories.php?edit={$cat_id}' class='btn btn-warning'>EDIT</a></td>
-                <td width='5%'><a href='categories.php?delete={$cat_id}' class='btn btn-danger'>DELETE</a></td>
+                <td width='5%'><a onclick=\"javascript: return confirm('Do you really want to delete the category?')\" href='categories.php?delete={$cat_id}' class='btn btn-danger'>DELETE</a></td>
            </tr>";
     }
 
@@ -95,7 +95,7 @@ function showAllPosts()
                 <td class='text-dark text-center'>$post_comment_counts</td>
                 <td class='text-dark text-center'>$post_date</td>
                 <td width='5%'><a href='posts.php?source=edit_post&p_id={$post_id}' class='btn btn-warning'>EDIT</a></td>
-                <td width='5%'><a href='posts.php?delete={$post_id}' class='btn btn-danger'>DELETE</a></td>
+                <td width='5%'><a onclick=\"javascript: return confirm('Do you really want to delete the post?')\" href='posts.php?delete={$post_id}' class='btn btn-danger'>DELETE</a></td>
            </tr>";
     }
 
@@ -142,7 +142,7 @@ function showAllComments()
                 <td class='text-dark text-center'>$comment_date</td>
                 <td width='5%'><a href='comments.php?approve={$comment_id}' class='btn btn-success'>APPROVE</a></td>
                 <td width='5%'><a href='comments.php?unapprove={$comment_id}' class='btn btn-warning'>UNAPPROVE</a></td>
-                <td width='5%'><a href='comments.php?delete={$comment_id}' class='btn btn-danger'>DELETE</a></td>
+                <td width='5%'><a onclick=\"javascript: return confirm('Do you really want to delete the comment?')\" href='comments.php?delete={$comment_id}' class='btn btn-danger'>DELETE</a></td>
               </tr>";
 
     }
@@ -246,7 +246,7 @@ function showAllUsers()
             <td width='5%'><a href='users.php?change_to_admin={$user_id}' class='btn btn-success'>Admin</a></td>
             <td width='5%'><a href='users.php?change_to_sub={$user_id}' class='btn btn-primary'>Subscriber</a></td>
             <td width='5%'><a href='users.php?source=edit_user&u_id={$user_id}' class='btn btn-warning'>EDIT</a></td>
-            <td width='5%'><a href='users.php?delete={$user_id}' class='btn btn-danger'>DELETE</a></td>
+            <td width='5%'><a onclick=\"javascript: return confirm('Do you really want to delete the user?')\" href='users.php?delete={$user_id}' class='btn btn-danger'>DELETE</a></td>
           </tr>";
 
     }
