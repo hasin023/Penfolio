@@ -41,6 +41,7 @@ if (!isset($_SESSION['user_role'])) {
     <!-- Custom styles-->
     <link href="css/customCss.css" rel="stylesheet">
     <link href="css/admin_style.min.css" rel="stylesheet">
+    <link href="css/summernote.css" rel="stylesheet">
 
 </head>
 

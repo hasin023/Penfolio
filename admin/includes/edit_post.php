@@ -93,7 +93,7 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-        <textarea text="<?php echo $post_content; ?>" class="form-control bg-light border-1 small" name="post_content" id="" placeholder="Write the contents of the post.." cols="30" rows="10"><?php echo $post_content; ?></textarea>
+        <textarea text="<?php echo $post_content; ?>" class="form-control bg-light border-1 small" name="post_content" id="summernote" placeholder="Write the contents of the post.." cols="30" rows="10"><?php echo $post_content; ?></textarea>
     </div>
 
     <div class="form-group">
