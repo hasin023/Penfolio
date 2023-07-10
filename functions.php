@@ -82,6 +82,7 @@ function showAllPosts()
 
 
         echo "<tr>
+                <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='$post_id'></td>
                 <td class='text-dark text-center'>$post_id</td>
                 <td class='text-dark text-center'>$post_author</td>
                 <td class='text-dark text-center'>$post_title</td>" .

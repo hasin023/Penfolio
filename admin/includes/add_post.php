@@ -25,6 +25,8 @@ if (isset($_POST['create_post'])) {
 
     confirmQuery($create_post_query);
 
+    echo "<p>Post Created. <a href='posts.php'>View Posts</a></p>";
+
 
 }
 

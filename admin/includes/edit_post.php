@@ -25,6 +25,8 @@ if (isset($_POST['update_post'])) {
 
     updatePost($the_post_id);
 
+    echo "<p>Post Created. <a href='../post.php?p_id={$the_post_id}'>View Post</a> or <a href='posts.php'>Edit More Posts</a></p>";
+
 }
 
 ?>
