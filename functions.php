@@ -269,6 +269,28 @@ function updateUser($the_user_id)
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
 
+    //cleaning up the data
+    $user_firstname = mysqli_real_escape_string($connection, $user_firstname);
+    $user_lastname = mysqli_real_escape_string($connection, $user_lastname);
+    $user_role = mysqli_real_escape_string($connection, $user_role);
+
+    $username = mysqli_real_escape_string($connection, $username);
+    $user_email = mysqli_real_escape_string($connection, $user_email);
+    $user_password = mysqli_real_escape_string($connection, $user_password);
+
+    //query to get the salt
+    // $salt_query = "SELECT randSalt FROM users";
+    // $select_randsalt_query = mysqli_query($connection, $salt_query);
+    // if (!$select_randsalt_query) {
+    //     die("Query Failed" . mysqli_error($connection));
+    // }
+
+
+    // $row = mysqli_fetch_array($select_randsalt_query);
+    // $salt = $row['randSalt'];
+    // $user_password = crypt($user_password, $salt);
+
+
     //NEED TO MAKE THE PICTURE SQUARE AND SELECT THE MIDDLE PART BEFORE COPYING IT TO THE IMAGES FOLDER
     // cropImage(createimagefromfile($user_image_temp), 500, 500);
     // $cropped_image = strval(cropImage(createimagefromfile($user_image_temp), 500, 500));

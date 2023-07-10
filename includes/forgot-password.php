@@ -56,7 +56,7 @@
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
-                                        <a href="login.php" class="btn btn-warning btn-user btn-block">
+                                        <a href="#" class="btn btn-warning btn-user btn-block">
                                             Reset Password
                                         </a>
                                     </form>
@@ -87,7 +87,7 @@
     <script src="../admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../admin/js/sb-admin-2.min.js"></script>
+    <script src="../admin/js/adminScripts.min.js"></script>
 
 </body>
 

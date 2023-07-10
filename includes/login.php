@@ -155,7 +155,7 @@ if (isset($_POST['login'])) {
     <script src="../admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../admin/js/sb-admin-2.min.js"></script>
+    <script src="../admin/js/adminScripts.min.js"></script>
 
 </body>
 
