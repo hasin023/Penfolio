@@ -22,17 +22,8 @@ if (isset($_POST['create_user'])) {
     $user_email = mysqli_real_escape_string($connection, $user_email);
     $user_password = mysqli_real_escape_string($connection, $user_password);
 
-    //query to get the salt
-    // $salt_query = "SELECT randSalt FROM users";
-    // $select_randsalt_query = mysqli_query($connection, $salt_query);
-    // if (!$select_randsalt_query) {
-    //     die("Query Failed" . mysqli_error($connection));
-    // }
-
-
-    // $row = mysqli_fetch_array($select_randsalt_query);
-    // $salt = $row['randSalt'];
-    // $user_password = crypt($user_password, $salt);
+    //hashing the password
+    $user_password = hash("sha512", $user_password);
 
 
     //NEED TO MAKE THE PICTURE SQUARE AND SELECT THE MIDDLE PART BEFORE COPYING IT TO THE IMAGES FOLDER

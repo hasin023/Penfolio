@@ -10,16 +10,8 @@ if (isset($_POST['login'])) {
     $username = mysqli_real_escape_string($connection, $username);
     $password = mysqli_real_escape_string($connection, $password);
 
-    //query to get the salt
-    // $query = "SELECT randSalt FROM users";
-    // $select_randsalt_query = mysqli_query($connection, $query);
-    // if (!$select_randsalt_query) {
-    //     die("Query Failed" . mysqli_error($connection));
-    // }
-
-    // $row = mysqli_fetch_array($select_randsalt_query);
-    // $salt = $row['randSalt'];
-    // $password = crypt($password, $salt);
+    //hashing the password
+    $password = hash("sha512", $password);
 
     //query to check if the user exists
     $query = "SELECT * FROM users WHERE username = '{$username}' AND user_password = '{$password}'";

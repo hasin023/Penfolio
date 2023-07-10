@@ -10,53 +10,69 @@ if (isset($_POST['register'])) {
     $repassword = $_POST['re-password'];
     $email = $_POST['email'];
 
-    //cleaning up the data
-    $firstname = mysqli_real_escape_string($connection, $firstname);
-    $lastname = mysqli_real_escape_string($connection, $lastname);
-    $username = mysqli_real_escape_string($connection, $username);
-    $password = mysqli_real_escape_string($connection, $password);
-    $email = mysqli_real_escape_string($connection, $email);
-
-    //query to get the salt
-    // $query = "SELECT randSalt FROM users";
-    // $select_randsalt_query = mysqli_query($connection, $query);
-    // if (!$select_randsalt_query) {
-    //     die("Query Failed" . mysqli_error($connection));
-    // }
-
-
-    // $row = mysqli_fetch_array($select_randsalt_query);
-    // $salt = $row['randSalt'];
-    // $password = crypt($password, $salt);
-    // $repassword = crypt($repassword, $salt);
-
-
-    //query to check if the user exists
-    $query = "SELECT * FROM users WHERE username = '{$username}'";
-    $select_user_query = mysqli_query($connection, $query);
-    if (!$select_user_query) {
-        die("Query Failed" . mysqli_error($connection));
-    } else if ($password != $repassword) {
+    if ($firstname == "" || $lastname == "" || $username == "" || $password == "" || $repassword == "" || $email == "") {
         echo '<script type="text/javascript">';
-        echo ' alert("Passwords do not match!")';
+        echo ' alert("Please fill in all the fields!")';
         echo '</script>';
-    } else if (mysqli_num_rows($select_user_query) > 0) {
+    } else if (strlen($password) < 8) {
         echo '<script type="text/javascript">';
-        echo ' alert("Username already exists!")';
+        echo ' alert("Password must be at least 8 characters!")';
+        echo '</script>';
+    } else if (!preg_match("#[0-9]+#", $password)) {
+        echo '<script type="text/javascript">';
+        echo ' alert("Password must include at least one number!")';
+        echo '</script>';
+    } else if (!preg_match("#[a-zA-Z]+#", $password)) {
+        echo '<script type="text/javascript">';
+        echo ' alert("Password must include at least one letter!")';
+        echo '</script>';
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo '<script type="text/javascript">';
+        echo ' alert("Invalid email address!")';
         echo '</script>';
     } else {
-        $query = "INSERT INTO users (user_firstname, user_lastname, username, user_password, user_email, user_role) ";
-        $query .= "VALUES ('{$firstname}', '{$lastname}', '{$username}', '{$password}', '{$email}', 'subscriber')";
-        $register_user_query = mysqli_query($connection, $query);
-        if (!$register_user_query) {
-            die("Query Failed" . mysqli_error($connection));
-        }
-        echo '<script type="text/javascript">';
-        echo ' alert("Registration Successful!")';
-        echo '</script>';
+        //cleaning up the data
+        $firstname = mysqli_real_escape_string($connection, $firstname);
+        $lastname = mysqli_real_escape_string($connection, $lastname);
+        $username = mysqli_real_escape_string($connection, $username);
+        $password = mysqli_real_escape_string($connection, $password);
+        $email = mysqli_real_escape_string($connection, $email);
 
-        header("Location: login.php");
+
+        //hashing the password
+        $password = hash("sha512", $password);
+        $repassword = hash("sha512", $repassword);
+
+
+        //query to check if the user exists
+        $query = "SELECT * FROM users WHERE username = '{$username}'";
+        $select_user_query = mysqli_query($connection, $query);
+        if (!$select_user_query) {
+            die("Query Failed" . mysqli_error($connection));
+        } else if ($password != $repassword) {
+            echo '<script type="text/javascript">';
+            echo ' alert("Passwords do not match!")';
+            echo '</script>';
+        } else if (mysqli_num_rows($select_user_query) > 0) {
+            echo '<script type="text/javascript">';
+            echo ' alert("Username already exists!")';
+            echo '</script>';
+        } else {
+            $query = "INSERT INTO users (user_firstname, user_lastname, username, user_password, user_email, user_role) ";
+            $query .= "VALUES ('{$firstname}', '{$lastname}', '{$username}', '{$password}', '{$email}', 'subscriber')";
+            $register_user_query = mysqli_query($connection, $query);
+            if (!$register_user_query) {
+                die("Query Failed" . mysqli_error($connection));
+            }
+            echo '<script type="text/javascript">';
+            echo ' alert("Registration Successful!")';
+            echo '</script>';
+
+            header("Location: login.php");
+        }
     }
+
+
 }
 
 
