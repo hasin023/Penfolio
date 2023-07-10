@@ -31,85 +31,123 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- Posts Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Posts</div>
+
+                <?php
+
+                $query = "SELECT * FROM posts";
+                $select_all_posts = mysqli_query($connection, $query);
+                $post_counts = mysqli_num_rows($select_all_posts);
+
+                echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$post_counts}</div>";
+
+                ?>
+                                            <!-- <div class="h5 mb-0 font-weight-bold text-gray-800">12</div> -->
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-clipboard-list fa-3x text-gray-300"></i>
                                         </div>
                                     </div>
+                                    <hr>
+                                    <a href="posts.php" class="btn btn-primary " style=" width: 7.4rem; margin-left: 8rem;">View Details</a>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- Categories Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Categories</div>
+
+                <?php
+
+                $query = "SELECT * FROM categories";
+                $select_all_categories = mysqli_query($connection, $query);
+                $categories_counts = mysqli_num_rows($select_all_categories);
+
+                echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$categories_counts}</div>";
+
+                ?>
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-list fa-3x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <a href="categories.php" class="btn btn-info " style=" width: 7.4rem; margin-left: 8rem;">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Users Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Users</div>
+
+                <?php
+
+                $query = "SELECT * FROM users";
+                $select_all_users = mysqli_query($connection, $query);
+                $users_counts = mysqli_num_rows($select_all_users);
+
+                echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$users_counts}</div>";
+
+                ?>
+
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <i class="fas fa-users fa-3x text-gray-300"></i>
                                         </div>
                                     </div>
+                                    <hr>
+                                    <a href="users.php" class="btn btn-success " style=" width: 7.4rem; margin-left: 8rem;">View Details</a>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
+                        <!-- Comments Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            Comments</div>
+
+
+                <?php
+
+                $query = "SELECT * FROM comments";
+                $select_all_comments = mysqli_query($connection, $query);
+                $comments_counts = mysqli_num_rows($select_all_comments);
+
+                echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>{$comments_counts}</div>";
+
+                ?> 
+
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <i class="fas fa-comments fa-3x text-gray-300"></i>
                                         </div>
                                     </div>
+                                    <hr>
+                                    <a href="comments.php" class="btn btn-warning " style=" width: 7.4rem; margin-left: 8rem;">View Details</a>
                                 </div>
                             </div>
                         </div>
