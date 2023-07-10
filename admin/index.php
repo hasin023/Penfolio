@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="card-body">
                     
-                                    <h4 class="small font-weight-bold">Active Posts 
+                                <h4 class="small font-weight-bold">Active Posts 
 
                 <?php
 
@@ -185,6 +185,27 @@
                                     </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: <?php echo $post_percentage; ?>%"
+                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">Draft Posts 
+
+                <?php
+
+                $query = "SELECT * FROM posts WHERE post_status = 'draft'";
+                $select_all_draft_posts = mysqli_query($connection, $query);
+
+                $post_draft_counts = mysqli_num_rows($select_all_draft_posts);
+
+                $draft_post_percentage = ($post_draft_counts / $post_counts) * 100;
+
+                echo "<span class='float-right'>{$draft_post_percentage}%</span>";
+
+                ?> 
+
+                                    </h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: <?php echo $draft_post_percentage; ?>%"
                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
 
@@ -207,6 +228,7 @@
                                         <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $subscribers_percentage; ?>%"
                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
+                                    
                                     <h4 class="small font-weight-bold">Approved Comments 
 
                 <?php
