@@ -95,7 +95,7 @@ function showAllPosts()
                 <td class='text-dark text-center'>$post_tags</td>
                 <td class='text-dark text-center'>$post_comment_counts</td>
                 <td class='text-dark text-center'>$post_date</td>
-                <td class='text-dark text-center'>$post_views_count</td>
+                <td class='text-dark text-center'><a href='posts.php?reset={$post_id}'>$post_views_count</a></td>
                 <td width='5%'><a href='posts.php?source=edit_post&p_id={$post_id}' class='btn btn-warning'>EDIT</a></td>
                 <td width='5%'><a onclick=\"javascript: return confirm('Do you really want to delete the post?')\" href='posts.php?delete={$post_id}' class='btn btn-danger'>DELETE</a></td>
            </tr>";
