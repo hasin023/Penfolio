@@ -2,7 +2,6 @@
 
     <div class="sidebar-box search-form-wrap mb-4">
     <form action="#" class="sidebar-search-form">
-        <span class="bi-search"></span>
         <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
     </form>
     </div>
@@ -52,11 +51,22 @@
     <div class="sidebar-box">
     <h3 class="heading">Categories</h3>
     <ul class="categories">
-        <li><a href="#">Food <span>(12)</span></a></li>
-        <li><a href="#">Travel <span>(22)</span></a></li>
-        <li><a href="#">Lifestyle <span>(37)</span></a></li>
-        <li><a href="#">Business <span>(42)</span></a></li>
-        <li><a href="#">Adventure <span>(14)</span></a></li>
+
+    <?php
+
+    $query = "SELECT * FROM categories ORDER BY RAND() LIMIT 5";
+    $select_all_categories_query = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
+        $cat_title = $row['cat_title'];
+
+        echo "<li>
+                <a href='#'>$cat_title</a>
+            </li>";
+    }
+
+    ?>
+
     </ul>
     </div>
     <!-- END sidebar-box -->
