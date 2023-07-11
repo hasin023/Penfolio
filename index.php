@@ -24,6 +24,12 @@
 
                 $select_all_posts_query = mysqli_query($connection, $query);
 
+                echo "<h1 class='page-header'>
+                            Page Heading
+                            <small>Secondary Text</small>
+                        </h1>";
+
+
                 while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
                     $post_id = $row['post_id'];
                     $post_title = $row['post_title'];
@@ -34,28 +40,24 @@
                     $post_content = substr($row['post_content'], 0, 250) . "...";
                     $post_status = $row['post_status'];
 
+
                     if ($post_status !== 'published') {
                         echo "<h1 class='text-center'>No Posts Published</h1>";
                     } else {
-                        echo "<h1 class='page-header'>
-                        Page Heading
-                        <small>Secondary Text</small>
-                        </h1>
-                    
-                        <h2>
+                        echo "<h2>
                             <a href='post.php?p_id=$post_id'>$post_title</a>
-                        </h2>
-                        <p class='lead'>
-                            by <a href='index.php'>$post_author</a>
-                        </p>
-                        <p><span class='glyphicon glyphicon-time'></span> Posted on $post_date</p>
-                        <hr>
-                        <img class='img-responsive' src='images/$post_image' alt='Blog Post Image'>
-                        <hr>
-                        <p>$post_content</p>
-                        <a class='btn btn-primary' href='post.php?p_id=$post_id'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
+                            </h2>
+                            <p class='lead'>
+                                by <a href='author_posts.php?author=$post_author&p_id=$post_id'>$post_author</a>
+                            </p>
+                            <p><span class='glyphicon glyphicon-time'></span> Posted on $post_date</p>
+                            <hr>
+                            <img class='img-responsive' src='images/$post_image' alt='Blog Post Image'>
+                            <hr>
+                            <p>$post_content</p>
+                            <a class='btn btn-primary' href='post.php?p_id=$post_id'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
 
-                        <hr>";
+                            <hr>";
                     }
 
                 }

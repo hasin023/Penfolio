@@ -13,36 +13,29 @@
 
         <div class="row">
 
-            <!-- Blog Entries Column -->
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
 
-
-            <div class="col-md-8">
-
+                <!-- Blog Post -->
 
                 <?php
-                if (isset($_GET['category'])) {
-                    $the_category_id = $_GET['category'];
+
+                if (isset($_GET['p_id'])) {
+                    $the_post_id = $_GET['p_id'];
+                    $autor = $_GET['author'];
+
                 }
 
-                $query = "SELECT * FROM posts WHERE post_category_id = $the_category_id";
+                $query = "SELECT * FROM posts WHERE post_author = '{$autor}'";
 
-                $select_all_posts_query = mysqli_query($connection, $query);
+                $select_post_query = mysqli_query($connection, $query);
 
-                $cat_query = "SELECT * FROM categories WHERE cat_id = $the_category_id";
-                $select_categories = mysqli_query($connection, $cat_query);
-
-                while ($row = mysqli_fetch_assoc($select_categories)) {
-                    $cat_id = $row['cat_id'];
-                    $cat_title = $row['cat_title'];
-
-                    echo "<h1 class='page-header'>
-                            Category Posts
-                            <small>$cat_title</small>
+                echo "<h1 class='page-header'>
+                            Author Posts
+                            <small>All posts by $autor</small>
                         </h1>";
-                }
 
-
-                while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
+                while ($row = mysqli_fetch_assoc($select_post_query)) {
                     $post_id = $row['post_id'];
                     $post_title = $row['post_title'];
                     $post_author = $row['post_author'];
@@ -51,13 +44,11 @@
                     $post_image = $row['post_image'];
                     $post_content = substr($row['post_content'], 0, 250) . "...";
 
-                    echo "
-                        <h2>
-                            <a href='post.php?p_id=$post_id'>$post_title</a>
+
+                    echo "<h2>
+                        <a href='post.php?p_id=$post_id'>$post_title</a>
                         </h2>
-                        <p class='lead'>
-                            by <a href='index.php'>$post_author</a>
-                        </p>
+
                         <p><span class='glyphicon glyphicon-time'></span> Posted on $post_date</p>
                         <hr>
                         <img class='img-responsive' src='images/$post_image' alt='Blog Post Image'>
@@ -69,12 +60,11 @@
                 }
 
                 ?>
-
+                
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
             <?php include("includes/sidebar.php"); ?>
-
 
         </div>
         <!-- /.row -->

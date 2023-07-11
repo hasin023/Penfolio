@@ -39,6 +39,9 @@
                     echo "<h3>NO RESULT</h3>";
                 } else {
 
+                    echo "<h1 class='page-header'>
+                            Tag Posts
+                        </h1>";
 
 
                     while ($row = mysqli_fetch_assoc($search_query)) {
@@ -49,25 +52,21 @@
                         $post_image = $row['post_image'];
                         $post_content = substr($row['post_content'], 0, 250) . "...";
 
-                        echo "<h1 class='page-header'>
-                        Page Heading
-                        <small>Secondary Text</small>
-                    </h1>
-                
-                    <h2>
-                        <a href='#'>$post_title</a>
-                    </h2>
-                    <p class='lead'>
-                        by <a href='index.php'>$post_author</a>
-                    </p>
-                    <p><span class='glyphicon glyphicon-time'></span> Posted on $post_date</p>
-                    <hr>
-                    <img class='img-responsive' src='images/$post_image' alt='Blog Post Image'>
-                    <hr>
-                    <p>$post_content</p>
-                    <a class='btn btn-primary' href='#'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
+                        echo "
+                            <h2>
+                                <a href='#'>$post_title</a>
+                            </h2>
+                            <p class='lead'>
+                                by <a href='index.php'>$post_author</a>
+                            </p>
+                            <p><span class='glyphicon glyphicon-time'></span> Posted on $post_date</p>
+                            <hr>
+                            <img class='img-responsive' src='images/$post_image' alt='Blog Post Image'>
+                            <hr>
+                            <p>$post_content</p>
+                            <a class='btn btn-primary' href='#'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
 
-                    <hr>";
+                            <hr>";
                     }
 
 
