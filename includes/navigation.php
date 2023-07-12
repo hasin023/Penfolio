@@ -46,9 +46,24 @@
 
                 </ul>
               </li>
-              <li><a href="includes/login.php">Login</a></li>
+
+
               <li><a href="includes/register.php">Register</a></li>
-              <li><a href="admin/index.php">Admin</a></li>
+
+                <?php
+
+                if (isset($_SESSION['user_role'])) {
+                  if ($_SESSION['user_role'] == 'admin') {
+                    echo "<li><a href='admin/index.php'>Admin</a></li>";
+                  } else {
+                    echo "<li><a href='includes/logout.php'>Logout</a></li>";
+                  }
+                } else {
+                  echo "<li><a href='includes/login.php'>Login</a></li>";
+                }
+
+                ?>
+
             </ul>
           </div>
           <div class="col-2 text-end">
