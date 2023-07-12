@@ -36,7 +36,27 @@
 
           <?php
 
-          $query = "SELECT * FROM posts WHERE post_status = 'published' AND post_category_id = $the_category_id";
+          $per_page = 4;
+
+          $post_count_query = "SELECT * FROM posts WHERE post_status = 'published' AND post_category_id = $the_category_id";
+          $find_count = mysqli_query($connection, $post_count_query);
+
+          $count = mysqli_num_rows($find_count);
+          $count = ceil($count / $per_page);
+
+          if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+          } else {
+            $page = "";
+          }
+
+          if ($page == "" || $page == 1) {
+            $page_1 = 0;
+          } else {
+            $page_1 = ($page * $per_page) - $per_page;
+          }
+
+          $query = "SELECT * FROM posts WHERE post_status = 'published' AND post_category_id = $the_category_id LIMIT $page_1, $per_page";
           $select_all_posts_query = mysqli_query($connection, $query);
 
           if (mysqli_num_rows($select_all_posts_query) == 0) {
@@ -86,8 +106,26 @@
           ?>
             
 
-          <?php include("includes/pagination.php"); ?>
+            <div class="row text-start pt-5 border-top">
+              <div class="col-md-12">
+                  <div class="custom-pagination">
 
+                    <?php
+
+                    for ($i = 1; $i <= $count; $i++) {
+                      if ($i == $page) {
+                        echo "<a class='bg-dark mx-1' href='category.php?category={$cat_id}&page={$i}'>{$i}</a>";
+                      } else {
+                        echo "<a class='mx-1' href='category.php?category={$cat_id}&page={$i}'>{$i}</a>";
+                      }
+                    }
+
+                    ?>
+
+                  </div>
+              </div>
+          </div>
+        
           </div>
 
           <?php include("includes/sidebar.php"); ?>

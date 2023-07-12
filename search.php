@@ -78,9 +78,6 @@
 
 				?>
 
-
-				<?php include("includes/pagination.php"); ?>
-
 				</div>
 
 				<?php include("includes/sidebar.php"); ?>

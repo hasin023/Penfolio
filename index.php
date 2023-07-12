@@ -44,7 +44,6 @@
         }
 
         $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_1, $per_page";
-        //$query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT 4";
         $select_all_posts_query = mysqli_query($connection, $query);
 
         if (mysqli_num_rows($select_all_posts_query) == 0) {
@@ -104,18 +103,17 @@
               <div class="col-md-12">
                   <div class="custom-pagination">
 
-                  <?php
+                    <?php
 
-                  for ($i = 1; $i <= $count; $i++) {
-                    if ($i == $page) {
-                      echo "<a class='bg-dark mx-1' href='index.php?page={$i}'>{$i}</a>";
-                    } else {
-                      echo "<a class='mx-1' href='index.php?page={$i}'>{$i}</a>";
+                    for ($i = 1; $i <= $count; $i++) {
+                      if ($i == $page) {
+                        echo "<a class='bg-dark mx-1' href='index.php?page={$i}'>{$i}</a>";
+                      } else {
+                        echo "<a class='mx-1' href='index.php?page={$i}'>{$i}</a>";
+                      }
                     }
-                  }
 
-
-                  ?>
+                    ?>
 
                   </div>
               </div>
