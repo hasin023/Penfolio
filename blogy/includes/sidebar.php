@@ -1,9 +1,16 @@
 <div class="col-lg-4 sidebar">
 
     <div class="sidebar-box search-form-wrap mb-4">
-    <form action="#" class="sidebar-search-form">
-        <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
-    </form>
+        <form action="search.php" method="post" class="sidebar-search-form">
+
+            <div class="input-group">
+                <input name="search" type="text" class="form-control" id="s" placeholder="Type a keyword">
+                <span class="input-group-btn">
+                    <input  name="submit" class="btn btn-success" type="submit" value="SEARCH">
+                </span>
+            </div>
+
+        </form>
     </div>
     <!-- END sidebar-box -->
     <div class="sidebar-box">

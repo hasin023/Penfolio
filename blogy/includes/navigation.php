@@ -18,14 +18,14 @@
             >
           </div>
           <div class="col-8 text-center">
-            <form action="#" class="search-form d-inline-block d-lg-none">
+            <!-- <form action="search.php" class="search-form d-inline-block d-lg-none">
               <input
                 type="text"
                 class="form-control"
                 placeholder="Search..."
               />
               <span class="bi-search"></span>
-            </form>
+            </form> -->
 
             <ul
               class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto"
@@ -66,14 +66,14 @@
             >
               <span></span>
             </a>
-            <form action="#" class="search-form d-none d-lg-inline-block">
+            <!-- <form action="#" class="search-form d-none d-lg-inline-block">
               <input
                 type="text"
                 class="form-control"
                 placeholder="Search..."
               />
               <span class="bi-search"></span>
-            </form>
+            </form> -->
           </div>
         </div>
       </div>

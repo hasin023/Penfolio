@@ -41,10 +41,10 @@
 
           if (mysqli_num_rows($select_all_posts_query) == 0) {
             echo "<div class='row'>
-            <div class='col-12'>
-            <div class='heading'>No posts found.</div>
-            </div>
-            </div>";
+                  <div class='col-12'>
+                  <div class='heading'>No posts found.</div>
+                  </div>
+                  </div>";
           } else {
 
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
