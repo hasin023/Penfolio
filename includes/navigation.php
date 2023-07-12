@@ -1,60 +1,67 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.php">PENFOLIO</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<nav class="site-nav">
+  <div class="container">
+    <div class="menu-bg-wrap">
+      <div class="site-navigation">
+        <div class="row g-0 align-items-center">
+          <div class="col-2">
+            <a href="index.php" class="logo m-0 float-start"
+              >PENFOLIO<span class="text-primary">.</span></a
+            >
+          </div>
+          <div class="col-8 text-center">
+
+            <ul
+              class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto"
+            >
+              <li class="active"><a href="index.php">Home</a></li>
+              <li class="has-children">
+                <a href="category.php">Categories</a>
+                <ul class="dropdown">
+
 
                 <?php
 
-                $query = "SELECT * FROM categories ORDER BY RAND() LIMIT 5";
+                $query = "SELECT * FROM categories";
                 $select_all_categories_query = mysqli_query($connection, $query);
 
                 while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
-                    $cat_title = $row['cat_title'];
+                  $cat_title = $row['cat_title'];
+                  $cat_id = $row['cat_id'];
 
-                    echo "<li>
-                            <a href='#'>$cat_title</a>
+                  echo "<li>
+                          <a href='category.php?category=$cat_id'>$cat_title</a>
                         </li>";
                 }
 
                 ?>
 
-                     <li>
-                        <a href="admin">Admin</a>
-                    </li>
-
-                <?php
-
-                if (isset($_SESSION['user_role'])) {
-                    if (isset($_GET['p_id'])) {
-                        $the_post_id = $_GET['p_id'];
-                        echo "<li><a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
-                    }
-                }
-
-
-                ?>
-                <!--<li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li> -->
-
-
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+              </li>
+              <li><a href="includes/login.php">Login</a></li>
+              <li><a href="includes/register.php">Register</a></li>
+              <li><a href="admin/index.php">Admin</a></li>
+            </ul>
+          </div>
+          <div class="col-2 text-end">
+            <a
+              href="#"
+              class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light"
+            >
+              <span></span>
+            </a>
+
+          </div>
         </div>
-        <!-- /.container -->
-    </nav>
+      </div>
+    </div>
+  </div>
+</nav>

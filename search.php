@@ -1,93 +1,105 @@
-
-<!-- Header -->
 <?php include("includes/header.php"); ?>
 
-
-<!-- Navigation -->
 <?php include("includes/navigation.php"); ?>
 
+	<div class="section search-result-wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+
+				<?php
+
+				if (isset($_POST['search'])) {
+					$search = $_POST["search"];
+
+					echo "<div class='heading'>Search: '$search'</div>";
+				}
+
+				?>
+
+				</div>
+			</div>
+			<div class="row posts-entry">
+				<div class="col-lg-8">
 
 
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-
-            <!-- Blog Entries Column -->
+				<?php
 
 
-            <div class="col-md-8">
+				if (isset($_POST['search'])) {
+
+					$search = $_POST["search"];
+
+					$query = "SELECT * FROM posts WHERE post_status = 'published' AND post_tags LIKE '%$search%' OR post_title LIKE '%$search%' OR post_author LIKE '%$search%'";
+					$search_query = mysqli_query($connection, $query);
+
+					if (!$search_query) {
+						die("Query Failed" . mysqli_error($connection));
+					}
+
+					$count = mysqli_num_rows($search_query);
+
+					if ($count == 0) {
+						echo "<div class='row'>
+								<div class='col-12'>
+								<div class='heading'>No posts found.</div>
+								</div>
+								</div>";
+					} else {
 
 
-            <?php
+						while ($row = mysqli_fetch_assoc($search_query)) {
+							$post_id = $row['post_id'];
+							$post_title = $row['post_title'];
+							$post_author = $row['post_author'];
+							$date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+							$post_date = $date->format('F d, Y');
+							$post_image = $row['post_image'];
+							$post_content = substr($row['post_content'], 0, 250) . "...";
+
+							echo "
+								<div class='blog-entry d-flex blog-entry-search-item'>
+								<a href='post.php?p_id=$post_id' class='img-link me-4'>
+								<img src='images/$post_image' alt='Post Image' class='img-fluid'>
+								</a>
+								<div>
+								<span class='date'>$post_date</span>
+								<h2><a href='post.php?p_id=$post_id'>$post_title</a></h2>
+								<p>$post_content</p>
+								<p><a href='post.php?p_id=$post_id' class='btn btn-sm btn-outline-primary'>Read More</a></p>
+								</div>
+								</div>";
+						}
 
 
-            if (isset($_POST['search'])) {
-
-                $search = $_POST["search"];
-
-                $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'";
-                $search_query = mysqli_query($connection, $query);
-
-                if (!$search_query) {
-                    die("Query Failed" . mysqli_error($connection));
-                }
-
-                $count = mysqli_num_rows($search_query);
-
-                if ($count == 0) {
-                    echo "<h3>NO RESULT</h3>";
-                } else {
-
-                    echo "<h1 class='page-header'>
-                            Tag Posts
-                        </h1>";
+					}
+				}
 
 
-                    while ($row = mysqli_fetch_assoc($search_query)) {
-                        $post_title = $row['post_title'];
-                        $post_author = $row['post_author'];
-                        $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
-                        $post_date = $date->format('F d, Y');
-                        $post_image = $row['post_image'];
-                        $post_content = substr($row['post_content'], 0, 250) . "...";
-
-                        echo "
-                            <h2>
-                                <a href='#'>$post_title</a>
-                            </h2>
-                            <p class='lead'>
-                                by <a href='index.php'>$post_author</a>
-                            </p>
-                            <p><span class='glyphicon glyphicon-time'></span> Posted on $post_date</p>
-                            <hr>
-                            <img class='img-responsive' src='images/$post_image' alt='Blog Post Image'>
-                            <hr>
-                            <p>$post_content</p>
-                            <a class='btn btn-primary' href='#'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
-
-                            <hr>";
-                    }
+				?>
 
 
+					<div class="row text-start pt-5 border-top">
+						<div class="col-md-12">
+							<div class="custom-pagination">
+								<span>1</span>
+								<a href="#">2</a>
+								<a href="#">3</a>
+								<a href="#">4</a>
+								<span>...</span>
+								<a href="#">15</a>
+							</div>
+						</div>
+					</div>
 
-                }
-            }
+				</div>
 
+				<?php include("includes/sidebar.php"); ?>
+				
+			</div>
+		</div>
+	</div>
 
+	
 
-            ?>
-
-            </div>
-
-            <!-- Blog Sidebar Widgets Column -->
-            <?php include("includes/sidebar.php"); ?>
-
-
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-<!-- Footer -->
 <?php include("includes/footer.php"); ?>

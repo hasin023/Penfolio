@@ -1,87 +1,79 @@
-<div class="col-md-4">
+<div class="col-lg-4 sidebar">
 
-<!-- Blog Search Well -->
+    <div class="sidebar-box search-form-wrap mb-4">
+        <form action="search.php" method="post" class="sidebar-search-form">
 
+            <div class="input-group">
+                <input name="search" type="text" class="form-control" id="s" placeholder="Type a keyword">
+                <span class="input-group-btn">
+                    <input  name="submit" class="btn btn-success" type="submit" value="SEARCH">
+                </span>
+            </div>
 
-<div class="well">
-    <h4>Blog Search</h4>
-    <form action="search.php" method="post">
+        </form>
+    </div>
+    <!-- END sidebar-box -->
+    <div class="sidebar-box">
+    <h3 class="heading">Popular Posts</h3>
+    <div class="post-entry-sidebar">
+        <ul>
 
-        <div class="input-group">
-            <input name="search" type="text" class="form-control">
-            <span class="input-group-btn">
-                <button name="submit" class="btn btn-default" type="submit">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-        </div>
+        <?php
 
-    </form>
-    <!-- /.input-group -->
-</div>
+        $query = "SELECT * FROM posts ORDER BY post_views_count DESC LIMIT 4";
+        $select_all_posts_query = mysqli_query($connection, $query);
 
-
-<!-- Login Page -->
-<?php
-
-$style = "";
-$text = "Sign in to your account?";
-
-if (isset($_SESSION['user_role'])) {
-    if ($_SESSION['user_role'] == 'admin') {
-        $style = "style='display:none;'";
-    } else if ($_SESSION['user_role'] !== 'admin') {
-        $text = "Sign in to your Admin account?";
-        $style = "style='display:block;'";
-    }
-}
-
-?>
-
-<div class="well" <?php echo $style; ?>>
-    <h4 class="text-center"><?php echo $text; ?></h4>
-    <a href="includes/login.php" class="btn btn-block btn-warning">LOGIN</a>
-</div>
+        while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
+            $post_id = $row['post_id'];
+            $post_title = $row['post_title'];
+            $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+            $post_date = $date->format('F d, Y');
+            $post_image = $row['post_image'];
 
 
-<!-- Blog Categories Well -->
+            echo "<li>
+                        <a href='post.php?p_id=$post_id'>
+                        <img src='images/$post_image' alt='Image placeholder' class='mr-4'>
+                        <div class='ml-6 text'>
+                            <h4>$post_title</h4>
+                            <div class='post-meta'>
+                            <span class='mr-2'>$post_date </span>
+                            </div>
+                        </div>
+                        </a>
+                    </li>";
+        }
 
-<div class="well">
+        ?>
+        
+        </ul>
+    </div>
+    </div>
+    <!-- END sidebar-box -->
+
+    <div class="sidebar-box">
+    <h3 class="heading">Categories</h3>
+    <ul class="categories">
 
     <?php
-    $query = "SELECT * FROM categories ORDER BY RAND() Limit 4";
-    $select_categories_sidebar = mysqli_query($connection, $query);
+
+    $query = "SELECT * FROM categories ORDER BY RAND() LIMIT 5";
+    $select_all_categories_query = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
+        $cat_id = $row['cat_id'];
+        $cat_title = $row['cat_title'];
+
+        echo "<li>
+                <a href='category.php?category=$cat_id'>$cat_title</a>
+            </li>";
+    }
+
     ?>
 
-
-    <h4>Blog Categories</h4>
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="list-unstyled">
-
-            <?php
-
-            while ($row = mysqli_fetch_assoc($select_categories_sidebar)) {
-                $cat_id = $row['cat_id'];
-                $cat_title = $row['cat_title'];
-
-                echo "<li>
-                        <a href='category.php?category=$cat_id'>$cat_title</a>
-                    </li>";
-            }
-
-            ?>
-
-            </ul>
-        </div>
+    </ul>
     </div>
-    <!-- /.row -->
-</div>
+    <!-- END sidebar-box -->
 
-
-
-
-<!-- Side Widget Well -->
-<?php include("includes/widget.php"); ?>
 
 </div>

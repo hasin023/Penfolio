@@ -1,75 +1,129 @@
-
-<!-- Header -->
 <?php include("includes/header.php"); ?>
 
-
-<!-- Navigation -->
 <?php include("includes/navigation.php"); ?>
 
 
 
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-
-            <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
-
-                <!-- Blog Post -->
-
-                <?php
-
-                if (isset($_GET['p_id'])) {
-                    $the_post_id = $_GET['p_id'];
-                    $autor = $_GET['author'];
-
-                }
-
-                $query = "SELECT * FROM posts WHERE post_author = '{$autor}'";
-
-                $select_post_query = mysqli_query($connection, $query);
-
-                echo "<h1 class='page-header'>
-                            Author Posts
-                            <small>All posts by $autor</small>
-                        </h1>";
-
-                while ($row = mysqli_fetch_assoc($select_post_query)) {
-                    $post_id = $row['post_id'];
-                    $post_title = $row['post_title'];
-                    $post_author = $row['post_author'];
-                    $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
-                    $post_date = $date->format('F d, Y');
-                    $post_image = $row['post_image'];
-                    $post_content = substr($row['post_content'], 0, 250) . "...";
+    <div class="section search-result-wrap">
+      <div class="container">
 
 
-                    echo "<h2>
-                        <a href='post.php?p_id=$post_id'>$post_title</a>
-                        </h2>
+      <?php
+      if (isset($_GET['p_id'])) {
+        $the_post_id = $_GET['p_id'];
+        $author = $_GET['author'];
 
-                        <p><span class='glyphicon glyphicon-time'></span> Posted on $post_date</p>
-                        <hr>
-                        <img class='img-responsive' src='images/$post_image' alt='Blog Post Image'>
-                        <hr>
-                        <p>$post_content</p>
-                        <a class='btn btn-primary' href='post.php?p_id=$post_id'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
+      }
 
-                        <hr>";
-                }
+      $author_query = "SELECT * FROM posts WHERE post_author = '{$author}'";
+      $select_post_query = mysqli_query($connection, $author_query);
 
-                ?>
-                
+      while ($row = mysqli_fetch_assoc($select_post_query)) {
+        $post_id = $row['post_id'];
+        $post_author = $row['post_author'];
+      }
+
+      echo "<div class='row'>
+      <div class='col-12'>
+      <div class='heading'>Author: $post_author</div>
+      </div>
+      </div>";
+
+      ?>
+
+
+        <div class="row posts-entry">
+          <div class="col-lg-8">
+
+
+          <?php
+
+          if (isset($_GET['p_id'])) {
+            $the_post_id = $_GET['p_id'];
+            $author = $_GET['author'];
+
+          }
+
+
+
+          $query = "SELECT * FROM posts WHERE post_author = '{$author}'";
+          $select_post_query = mysqli_query($connection, $query);
+
+          if (mysqli_num_rows($select_post_query) == 0) {
+            echo "<div class='row'>
+                  <div class='col-12'>
+                  <div class='heading'>No posts found.</div>
+                  </div>
+                  </div>";
+          } else {
+
+            while ($row = mysqli_fetch_assoc($select_post_query)) {
+              $post_id = $row['post_id'];
+              $post_title = $row['post_title'];
+              $post_author = $row['post_author'];
+              $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+              $post_date = $date->format('F d, Y');
+              $post_image = $row['post_image'];
+              $post_content = substr($row['post_content'], 0, 250) . "...";
+
+              $cat_query = "SELECT * FROM categories WHERE cat_id = {$row['post_category_id']}";
+              $select_categories = mysqli_query($connection, $cat_query);
+
+              confirmQuery($select_categories);
+
+              while ($row = mysqli_fetch_assoc($select_categories)) {
+                $cat_id = $row['cat_id'];
+                $cat_title = $row['cat_title'];
+              }
+
+              echo "
+              <div class='blog-entry d-flex blog-entry-search-item'>
+              <a href='post.php?p_id=$post_id' class='img-link me-4'>
+                <img src='images/$post_image' alt='Image' class='img-fluid' />
+              </a>
+              <div>
+                <span class='date'
+                  >$post_date &bullet; <a href='#'>$cat_title</a></span
+                >
+                <h2>
+                  <a href='post.php?p_id=$post_id'
+                    >$post_title</a
+                  >
+                </h2>
+                <p>
+                $post_content
+                </p>
+                <p>
+                  <a href='post.php?p_id=$post_id' class='btn btn-sm btn-outline-primary'
+                    >Read More</a
+                  >
+                </p>
+              </div>
+            </div>";
+            }
+          }
+
+          ?>
+            
+
+            <div class="row text-start pt-5 border-top">
+              <div class="col-md-12">
+                <div class="custom-pagination">
+                  <span>1</span>
+                  <a href="#">2</a>
+                  <a href="#">3</a>
+                  <a href="#">4</a>
+                  <span>...</span>
+                  <a href="#">15</a>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <!-- Blog Sidebar Widgets Column -->
-            <?php include("includes/sidebar.php"); ?>
-
+          <?php include("includes/sidebar.php"); ?>
         </div>
-        <!-- /.row -->
+      </div>
+    </div>
 
-        <hr>
 
-<!-- Footer -->
 <?php include("includes/footer.php"); ?>

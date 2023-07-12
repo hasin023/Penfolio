@@ -1,22 +1,41 @@
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; All rights reserved by Penfolio <?php echo date("Y"); ?></p>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </footer>
+<footer class="site-footer">
 
+<div class="row">
+          <div class="col-12 text-center">
+
+            <p>
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              . All Rights Reserved. &mdash; Designed with love by
+              <a href="https://untree.co">Untree.co</a> Distributed by
+              <a href="https://themewagon.com">ThemeWagon</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- /.container -->
+    </footer>
+    <!-- /.site-footer -->
+
+    <!-- Preloader -->
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
-    <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/tiny-slider.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/flatpickr.min.js"></script>
 
-</body>
-
+    <script src="js/aos.js"></script>
+    <script src="js/glightbox.min.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/custom.js"></script>
+  </body>
 </html>
