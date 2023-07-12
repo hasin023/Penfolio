@@ -176,7 +176,7 @@
 
                 $post_published_counts = mysqli_num_rows($select_all_published_posts);
 
-                $post_percentage = ($post_published_counts / $post_counts) * 100;
+                $post_percentage = round(($post_published_counts / $post_counts), 2) * 100;
 
                 echo "<span class='float-right'>{$post_percentage}%</span>";
 
@@ -197,7 +197,7 @@
 
                 $post_draft_counts = mysqli_num_rows($select_all_draft_posts);
 
-                $draft_post_percentage = ($post_draft_counts / $post_counts) * 100;
+                $draft_post_percentage = round(($post_draft_counts / $post_counts), 2) * 100;
 
                 echo "<span class='float-right'>{$draft_post_percentage}%</span>";
 
@@ -218,7 +218,7 @@
 
                 $subscribers_counts = mysqli_num_rows($select_all_subscribers);
 
-                $subscribers_percentage = ($subscribers_counts / $users_counts) * 100;
+                $subscribers_percentage = round(($subscribers_counts / $users_counts), 2) * 100;
 
                 echo "<span class='float-right'>{$subscribers_percentage}%</span>";
 
@@ -238,7 +238,7 @@
 
                 $approved_comments_counts = mysqli_num_rows($select_all_approved_comments);
 
-                $approved_comments_percentage = ($approved_comments_counts / $comments_counts) * 100;
+                $approved_comments_percentage = round(($approved_comments_counts / $comments_counts), 2) * 100;
 
                 echo "<span class='float-right'>{$approved_comments_percentage}%</span>";
 

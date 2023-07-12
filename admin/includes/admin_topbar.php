@@ -47,6 +47,15 @@
                         </li>
 
 
+                        <!-- Nav Item - Users Online -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <p class="nav-link dropdown-toggle">
+                                <i class="fas fa-user fa-fw"></i>
+                                <span class="badge badge-success badge-counter"><?php echo users_online(); ?></span>
+                            </p>
+                        </li>
+
+
                         <!-- Nav Item - Home Page -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="../index.php" id="homeButton" role="button">
