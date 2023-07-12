@@ -38,7 +38,7 @@ while ($row = mysqli_fetch_assoc($select_post_query)) {
               <div class='post-entry text-center'>
                 <h1 class='mb-4'>$post_title</h1>
                 <div class='post-meta align-items-center text-center'>
-                  <span class='d-inline-block mt-1'>By $post_author</span>
+                  <span class='d-inline-block mt-1'>By <a href='author_posts.php?author=$post_author&p_id=$post_id'>$post_author</a></span>
                   <span>&nbsp;-&nbsp; $post_date</span>
                 </div>
               </div>
