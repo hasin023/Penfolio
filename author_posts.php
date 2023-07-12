@@ -104,9 +104,6 @@
           }
 
           ?>
-            
-
-          <?php include("includes/pagination.php"); ?>
 
           </div>
 
