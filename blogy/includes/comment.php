@@ -37,16 +37,16 @@ if (isset($_POST['create_comment'])) {
 <div class="pt-5 comment-wrap">
           <?php
 
-          $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
-          $query .= "AND comment_status = 'approved' ";
-          $query .= "ORDER BY comment_id DESC ";
-          $select_comment_query = mysqli_query($connection, $query);
+          $comment_query_count = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
+          $comment_query_count .= "AND comment_status = 'approved' ";
+          $comment_query_count .= "ORDER BY comment_id DESC ";
+          $count_comment_query = mysqli_query($connection, $comment_query_count);
 
-          if (!$select_comment_query) {
+          if (!$count_comment_query) {
             die("QUERY FAILED" . mysqli_error($connection));
           }
 
-          $count = mysqli_num_rows($select_comment_query);
+          $count = mysqli_num_rows($count_comment_query);
 
           if ($count > 1) {
             echo "<h3 class='mb-5 heading'>$count Comments</h3>";
@@ -63,7 +63,16 @@ if (isset($_POST['create_comment'])) {
 
             <?php
 
-            while ($row = mysqli_fetch_array($select_comment_query)) {
+            $get_comment_query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
+            $get_comment_query .= "AND comment_status = 'approved' ";
+            $get_comment_query .= "ORDER BY comment_id DESC ";
+            $render_comment_query = mysqli_query($connection, $get_comment_query);
+
+            if (!$render_comment_query) {
+              die("QUERY FAILED" . mysqli_error($connection));
+            }
+
+            while ($row = mysqli_fetch_array($render_comment_query)) {
               $date = DateTime::createFromFormat('Y-m-d', $row['comment_date']);
               $comment_date = $date->format('F d, Y');
               $comment_content = $row['comment_content'];
@@ -87,6 +96,7 @@ if (isset($_POST['create_comment'])) {
 
             ?>
 
+
             </ul>
             <!-- END comment-list -->
 
@@ -94,22 +104,22 @@ if (isset($_POST['create_comment'])) {
 
             <div class="comment-form-wrap pt-5">
               <h3 class="mb-5">Leave a comment</h3>
-              <form action="#" class="p-5 bg-light">
+              <form action="" method="post" role="form" class="p-5 bg-light">
                 <div class="form-group">
                   <label for="name">Name *</label>
-                  <input type="text" class="form-control" id="name">
+                  <input type="text" placeholder="Name" name="comment_author" class="form-control" id="name">
                 </div>
                 <div class="form-group">
                   <label for="email">Email *</label>
-                  <input type="email" class="form-control" id="email">
+                  <input type="email" placeholder="Email" name="comment_email" class="form-control" id="email">
                 </div>
 
                 <div class="form-group">
                   <label for="message">Message</label>
-                  <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                  <textarea name="comment_content" placeholder="Write your comment.." id="message" cols="30" rows="10" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                  <input type="submit" value="Post Comment" class="btn btn-primary">
+                  <input type="submit" name="create_comment" value="Post Comment" class="btn btn-success">
                 </div>
 
               </form>

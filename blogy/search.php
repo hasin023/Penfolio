@@ -59,14 +59,14 @@
 
 							echo "
 								<div class='blog-entry d-flex blog-entry-search-item'>
-								<a href='single.php?p_id=$post_id' class='img-link me-4'>
+								<a href='post.php?p_id=$post_id' class='img-link me-4'>
 								<img src='images/$post_image' alt='Post Image' class='img-fluid'>
 								</a>
 								<div>
 								<span class='date'>$post_date</span>
-								<h2><a href='single.php?p_id=$post_id'>$post_title</a></h2>
+								<h2><a href='post.php?p_id=$post_id'>$post_title</a></h2>
 								<p>$post_content</p>
-								<p><a href='single.php?p_id=$post_id' class='btn btn-sm btn-outline-primary'>Read More</a></p>
+								<p><a href='post.php?p_id=$post_id' class='btn btn-sm btn-outline-primary'>Read More</a></p>
 								</div>
 								</div>";
 						}

@@ -58,7 +58,7 @@
 
               echo "
               <div class='blog-entry d-flex blog-entry-search-item'>
-              <a href='single.php?p_id=$post_id' class='img-link me-4'>
+              <a href='post.php?p_id=$post_id' class='img-link me-4'>
                 <img src='images/$post_image' alt='Image' class='img-fluid' />
               </a>
               <div>
@@ -66,7 +66,7 @@
                   >$post_date &bullet; <a href='#'>$cat_title</a></span
                 >
                 <h2>
-                  <a href='single.php?p_id=$post_id'
+                  <a href='post.php?p_id=$post_id'
                     >$post_title</a
                   >
                 </h2>
@@ -74,7 +74,7 @@
                 $post_content
                 </p>
                 <p>
-                  <a href='single.php?p_id=$post_id' class='btn btn-sm btn-outline-primary'
+                  <a href='post.php?p_id=$post_id' class='btn btn-sm btn-outline-primary'
                     >Read More</a
                   >
                 </p>
