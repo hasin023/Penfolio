@@ -1,86 +1,96 @@
+<?php
+
+if (isset($_POST['create_comment'])) {
+
+  $the_post_id = $_GET['p_id'];
+
+  $comment_author = $_POST['comment_author'];
+  $comment_email = $_POST['comment_email'];
+  $comment_content = $_POST['comment_content'];
+
+  if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
+
+    $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) ";
+
+    $query .= "VALUES ($the_post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now()) ";
+
+    $create_comment_query = mysqli_query($connection, $query);
+
+    if (!$create_comment_query) {
+      die("QUERY FAILED" . mysqli_error($connection));
+    }
+
+    $query = "UPDATE posts SET post_comment_counts = post_comment_counts + 1 ";
+    $query .= "WHERE post_id = $the_post_id ";
+    $update_comment_count = mysqli_query($connection, $query);
+
+  } else {
+    echo "<script>alert('Fields cannot be empty')</script>";
+  }
+
+}
+
+?>
+
+
+
 <div class="pt-5 comment-wrap">
-            <h3 class="mb-5 heading">6 Comments</h3>
+          <?php
+
+          $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
+          $query .= "AND comment_status = 'approved' ";
+          $query .= "ORDER BY comment_id DESC ";
+          $select_comment_query = mysqli_query($connection, $query);
+
+          if (!$select_comment_query) {
+            die("QUERY FAILED" . mysqli_error($connection));
+          }
+
+          $count = mysqli_num_rows($select_comment_query);
+
+          if ($count > 1) {
+            echo "<h3 class='mb-5 heading'>$count Comments</h3>";
+          } else {
+            echo "<h3 class='mb-5 heading'>$count Comment</h3>";
+          }
+
+
+          ?>
+
+            
             <ul class="comment-list">
-              <li class="comment">
-                <div class="vcard">
-                  <img src="images/person_1.jpg" alt="Image placeholder">
-                </div>
-                <div class="comment-body">
-                  <h3>Jean Doe</h3>
-                  <div class="meta">January 9, 2018 at 2:21pm</div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  <p><a href="#" class="reply rounded">Reply</a></p>
-                </div>
-              </li>
-
-              <li class="comment">
-                <div class="vcard">
-                  <img src="images/person_2.jpg" alt="Image placeholder">
-                </div>
-                <div class="comment-body">
-                  <h3>Jean Doe</h3>
-                  <div class="meta">January 9, 2018 at 2:21pm</div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  <p><a href="#" class="reply rounded">Reply</a></p>
-                </div>
-
-                <ul class="children">
-                  <li class="comment">
-                    <div class="vcard">
-                      <img src="images/person_3.jpg" alt="Image placeholder">
-                    </div>
-                    <div class="comment-body">
-                      <h3>Jean Doe</h3>
-                      <div class="meta">January 9, 2018 at 2:21pm</div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                      <p><a href="#" class="reply rounded">Reply</a></p>
-                    </div>
 
 
-                    <ul class="children">
-                      <li class="comment">
-                        <div class="vcard">
-                          <img src="images/person_4.jpg" alt="Image placeholder">
-                        </div>
-                        <div class="comment-body">
-                          <h3>Jean Doe</h3>
-                          <div class="meta">January 9, 2018 at 2:21pm</div>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                          <p><a href="#" class="reply rounded">Reply</a></p>
-                        </div>
+            <?php
 
-                        <ul class="children">
-                          <li class="comment">
-                            <div class="vcard">
-                              <img src="images/person_5.jpg" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                              <h3>Jean Doe</h3>
-                              <div class="meta">January 9, 2018 at 2:21pm</div>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                              <p><a href="#" class="reply rounded">Reply</a></p>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
+            while ($row = mysqli_fetch_array($select_comment_query)) {
+              $date = DateTime::createFromFormat('Y-m-d', $row['comment_date']);
+              $comment_date = $date->format('F d, Y');
+              $comment_content = $row['comment_content'];
+              $comment_author = $row['comment_author'];
+
+
+              echo "
+                  <li class='comment'>
+                  <div class='vcard'>
+                  <img src='images/comment_user.png' alt='Image placeholder'>
+                  </div>
+                  <div class='comment-body'>
+                  <h3>$comment_author</h3>
+                  <div class='meta'>$comment_date</div>
+                  <p>$comment_content</p>
+                  </div>
                   </li>
-                </ul>
-              </li>
+              ";
 
-              <li class="comment">
-                <div class="vcard">
-                  <img src="images/person_1.jpg" alt="Image placeholder">
-                </div>
-                <div class="comment-body">
-                  <h3>Jean Doe</h3>
-                  <div class="meta">January 9, 2018 at 2:21pm</div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  <p><a href="#" class="reply rounded">Reply</a></p>
-                </div>
-              </li>
+            }
+
+            ?>
+
             </ul>
             <!-- END comment-list -->
+
+
 
             <div class="comment-form-wrap pt-5">
               <h3 class="mb-5">Leave a comment</h3>
@@ -92,10 +102,6 @@
                 <div class="form-group">
                   <label for="email">Email *</label>
                   <input type="email" class="form-control" id="email">
-                </div>
-                <div class="form-group">
-                  <label for="website">Website</label>
-                  <input type="url" class="form-control" id="website">
                 </div>
 
                 <div class="form-group">

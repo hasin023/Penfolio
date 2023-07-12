@@ -36,7 +36,7 @@
 
           <?php
 
-          $query = "SELECT * FROM posts WHERE post_category_id = $the_category_id";
+          $query = "SELECT * FROM posts WHERE post_status = 'published' AND post_category_id = $the_category_id";
           $select_all_posts_query = mysqli_query($connection, $query);
 
           if (mysqli_num_rows($select_all_posts_query) == 0) {

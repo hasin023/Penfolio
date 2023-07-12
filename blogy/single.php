@@ -61,7 +61,7 @@ while ($row = mysqli_fetch_assoc($select_post_query)) {
 
           <div class="post-content-body">
 
-            <p><?php echo $post_content ?></p>
+            <p class="text-dark"></p><?php echo $post_content ?></p>
            
           </div>
 
