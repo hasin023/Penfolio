@@ -104,25 +104,39 @@ if (isset($_POST['checkBoxArray'])) {
 
             <?php
             if (isset($_GET['delete'])) {
-                $post_id = $_GET['delete'];
 
-                $query = "DELETE FROM posts WHERE post_id = {$post_id} ";
-                $delete_query = mysqli_query($connection, $query);
+                if (isset($_SESSION['user_role'])) {
+                    if ($_SESSION['user_role'] == 'admin') {
 
-                confirmQuery($delete_query);
+                        $post_id = mysqli_real_escape_string($connection, $_GET['delete']);
 
-                header("Location: posts.php");
+                        $query = "DELETE FROM posts WHERE post_id = {$post_id} ";
+                        $delete_query = mysqli_query($connection, $query);
+
+                        confirmQuery($delete_query);
+
+                        header("Location: posts.php");
+                    }
+                }
+
             }
 
             if (isset($_GET['reset'])) {
-                $post_id = $_GET['reset'];
 
-                $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = " . mysqli_real_escape_string($connection, $_GET['reset']) . " ";
-                $reset_query = mysqli_query($connection, $query);
+                if (isset($_SESSION['user_role'])) {
+                    if ($_SESSION['user_role'] == 'admin') {
 
-                confirmQuery($reset_query);
+                        $post_id = mysqli_real_escape_string($connection, $_GET['reset']);
 
-                header("Location: posts.php");
+                        $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = " . mysqli_real_escape_string($connection, $_GET['reset']) . " ";
+                        $reset_query = mysqli_query($connection, $query);
+
+                        confirmQuery($reset_query);
+
+                        header("Location: posts.php");
+                    }
+                }
+
             }
 
 
