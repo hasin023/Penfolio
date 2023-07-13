@@ -321,7 +321,6 @@ function updateUser($the_user_id)
     confirmQuery($update_user_query);
 
     $_SESSION['username'] = $username;
-    $_SESSION['user_image'] = $user_image;
 
 
     header("Location: users.php");
