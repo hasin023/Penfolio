@@ -1,21 +1,21 @@
 <?php
 
 if (isset($_GET['p_id'])) {
-    $the_post_id = $_GET['p_id'];
+    $the_post_id = escape($_GET['p_id']);
 }
 
 $query = "SELECT * FROM posts WHERE post_id = {$the_post_id}";
 $select_posts_by_id = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
-    $post_category_id = $row['post_category_id'];
-    $post_title = $row['post_title'];
-    $post_author = $row['post_author'];
-    $post_status = $row['post_status'];
-    $post_image = $row['post_image'];
-    $post_tags = $row['post_tags'];
-    $post_content = $row['post_content'];
-    $post_comment_counts = $row['post_comment_counts'];
+    $post_category_id = escape($row['post_category_id']);
+    $post_title = escape($row['post_title']);
+    $post_author = escape($row['post_author']);
+    $post_status = escape($row['post_status']);
+    $post_image = escape($row['post_image']);
+    $post_tags = escape($row['post_tags']);
+    $post_content = escape($row['post_content']);
+    $post_comment_counts = escape($row['post_comment_counts']);
     $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
     $post_date = $date->format('F d, Y');
 }
@@ -49,8 +49,8 @@ if (isset($_POST['update_post'])) {
         confirmQuery($select_category);
 
         while ($row = mysqli_fetch_assoc($select_category)) {
-            $cat_id = $row['cat_id'];
-            $cat_title = $row['cat_title'];
+            $cat_id = escape($row['cat_id']);
+            $cat_title = escape($row['cat_title']);
 
             echo "<option value='{$cat_id}'>{$cat_title}</option>";
         }
@@ -63,8 +63,8 @@ if (isset($_POST['update_post'])) {
         confirmQuery($select_categories);
 
         while ($row = mysqli_fetch_assoc($select_categories)) {
-            $cat_id = $row['cat_id'];
-            $cat_title = $row['cat_title'];
+            $cat_id = escape($row['cat_id']);
+            $cat_title = escape($row['cat_title']);
 
             echo "<option value='{$cat_id}'>{$cat_title}</option>";
         }
@@ -82,10 +82,10 @@ if (isset($_POST['update_post'])) {
             confirmQuery($select_user);
 
             while ($row = mysqli_fetch_assoc($select_user)) {
-                $user_id = $row['user_id'];
-                $username = $row['username'];
-                $user_firstname = $row['user_firstname'];
-                $user_lastname = $row['user_lastname'];
+                $user_id = escape($row['user_id']);
+                $username = escape($row['username']);
+                $user_firstname = escape($row['user_firstname']);
+                $user_lastname = escape($row['user_lastname']);
                 $fullname = $user_firstname . " " . $user_lastname;
 
                 echo "<option value='{$fullname}'>{$username}</option>";

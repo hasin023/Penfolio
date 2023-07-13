@@ -5,15 +5,15 @@
 <?php
 
 if (isset($_GET['edit'])) {
-    $edit_cat_id = $_GET['edit'];
+    $edit_cat_id = escape($_GET['edit']);
 
     $query = "SELECT * FROM categories WHERE cat_id = {$edit_cat_id} ";
     $select_edit_categories = mysqli_query($connection, $query);
 
 
     while ($row = mysqli_fetch_assoc($select_edit_categories)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
+        $cat_id = escape($row['cat_id']);
+        $cat_title = escape($row['cat_title']);
 
         ?>
         <input value="<?php if (isset($cat_title))
@@ -28,8 +28,8 @@ if (isset($_GET['edit'])) {
 <?php
 
 if (isset($_POST['update_category'])) {
-    $edit_cat_id = $_GET['edit'];
-    $edit_cat_title = $_POST['cat_title'];
+    $edit_cat_id = escape($_GET['edit']);
+    $edit_cat_title = escape($_POST['cat_title']);
 
     $query = "UPDATE categories SET cat_title = '{$edit_cat_title}' WHERE cat_id = {$edit_cat_id} ";
     $edit_query = mysqli_query($connection, $query);

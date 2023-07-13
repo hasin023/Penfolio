@@ -2,25 +2,16 @@
 
 if (isset($_POST['create_user'])) {
 
-    $user_firstname = $_POST['user_firstname'];
-    $user_lastname = $_POST['user_lastname'];
-    $user_role = $_POST['user_role'];
+    $user_firstname = escape($_POST['user_firstname']);
+    $user_lastname = escape($_POST['user_lastname']);
+    $user_role = escape($_POST['user_role']);
 
-    $user_image = $_FILES['user_image']['name'];
+    $user_image = escape($_FILES['user_image']['name']);
     $user_image_temp = $_FILES['user_image']['tmp_name'];
 
-    $username = $_POST['username'];
-    $user_email = $_POST['user_email'];
-    $user_password = $_POST['user_password'];
-
-    //cleaning up the data
-    $user_firstname = mysqli_real_escape_string($connection, $user_firstname);
-    $user_lastname = mysqli_real_escape_string($connection, $user_lastname);
-    $user_role = mysqli_real_escape_string($connection, $user_role);
-
-    $username = mysqli_real_escape_string($connection, $username);
-    $user_email = mysqli_real_escape_string($connection, $user_email);
-    $user_password = mysqli_real_escape_string($connection, $user_password);
+    $username = escape($_POST['username']);
+    $user_email = escape($_POST['user_email']);
+    $user_password = escape($_POST['user_password']);
 
     //hashing the password
     $user_password = hash("sha512", $user_password);

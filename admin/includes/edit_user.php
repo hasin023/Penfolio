@@ -2,7 +2,7 @@
 
 if (isset($_GET['u_id'])) {
 
-    $the_user_id = $_GET['u_id'];
+    $the_user_id = escape($_GET['u_id']);
 
 }
 
@@ -10,14 +10,14 @@ $query = "SELECT * FROM users WHERE user_id = {$the_user_id}";
 $select_users_query = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($select_users_query)) {
-    $user_id = $row['user_id'];
-    $username = $row['username'];
-    $user_password = $row['user_password'];
-    $user_firstname = $row['user_firstname'];
-    $user_lastname = $row['user_lastname'];
-    $user_email = $row['user_email'];
-    $user_image = $row['user_image'];
-    $user_role = $row['user_role'];
+    $user_id = escape($row['user_id']);
+    $username = escape($row['username']);
+    $user_password = escape($row['user_password']);
+    $user_firstname = escape($row['user_firstname']);
+    $user_lastname = escape($row['user_lastname']);
+    $user_email = escape($row['user_email']);
+    $user_image = escape($row['user_image']);
+    $user_role = escape($row['user_role']);
 
 }
 

@@ -8,13 +8,13 @@ if (isset($_SESSION['username'])) {
   $query = "SELECT * FROM users WHERE username = '{$username}' ";
   $select_user_profile_query = mysqli_query($connection, $query);
   while ($row = mysqli_fetch_array($select_user_profile_query)) {
-    $user_id = $row['user_id'];
-    $username = $row['username'];
-    $user_firstname = $row['user_firstname'];
-    $user_lastname = $row['user_lastname'];
-    $user_email = $row['user_email'];
-    $user_role = $row['user_role'];
-    $user_image = $row['user_image'];
+    $user_id = escape($row['user_id']);
+    $username = escape($row['username']);
+    $user_firstname = escape($row['user_firstname']);
+    $user_lastname = escape($row['user_lastname']);
+    $user_email = escape($row['user_email']);
+    $user_role = escape($row['user_role']);
+    $user_image = escape($row['user_image']);
   }
 }
 
