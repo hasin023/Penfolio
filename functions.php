@@ -76,7 +76,7 @@ function showAllPosts()
         $post_status = $row['post_status'];
         $post_image = $row['post_image'];
         $post_tags = $row['post_tags'];
-        $post_comment_counts = $row['post_comment_counts'];
+        //$post_comment_counts = $row['post_comment_counts'];
         $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
         $post_date = $date->format('F d, Y');
         $post_views_count = $row['post_views_count'];
@@ -92,9 +92,17 @@ function showAllPosts()
 
             . "<td class='text-dark text-center'>$post_status</td>
                 <td class='text-dark text-center'><img class='img-fluid' src='../images/$post_image' alt='Post_Image'></td>
-                <td class='text-dark text-center'>$post_tags</td>
-                <td class='text-dark text-center'>$post_comment_counts</td>
-                <td class='text-dark text-center'>$post_date</td>
+                <td class='text-dark text-center'>$post_tags</td>";
+
+        $comment_query = "SELECT * FROM comments WHERE comment_post_id = $post_id ";
+        $send_comment_query = mysqli_query($connection, $comment_query);
+        $row = mysqli_fetch_array($send_comment_query);
+        $count_comments = mysqli_num_rows($send_comment_query);
+
+        echo "<td class='text-dark text-center'>$count_comments</td>";
+
+
+        echo "<td class='text-dark text-center'>$post_date</td>
                 <td class='text-dark text-center'><a href='posts.php?reset={$post_id}'>$post_views_count</a></td>
                 <td width='5%'><a href='posts.php?source=edit_post&p_id={$post_id}' class='btn btn-warning'>EDIT</a></td>
                 <td width='5%'><a onclick=\"javascript: return confirm('Do you really want to delete the post?')\" href='posts.php?delete={$post_id}' class='btn btn-danger'>DELETE</a></td>
