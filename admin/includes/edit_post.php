@@ -73,16 +73,26 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-        <input value="<?php echo $post_author; ?>" class="form-control bg-light border-1 small" type="text" name="post_author" placeholder="Author">
-    </div>
+        <select class="form-control bg-light border-1 small" type="text" name="post_author">
 
-    <!-- <div class="form-group">
-        <select class="form-control bg-light border-1 small" type="text" name="post_status">
-            <option value="none">Select Status</option>
-            <option value="draft">Draft</option>
-            <option value="published">Published</option>
+            <?php
+            $query = "SELECT * FROM users";
+            $select_user = mysqli_query($connection, $query);
+
+            confirmQuery($select_user);
+
+            while ($row = mysqli_fetch_assoc($select_user)) {
+                $user_id = $row['user_id'];
+                $username = $row['username'];
+                $user_firstname = $row['user_firstname'];
+                $user_lastname = $row['user_lastname'];
+                $fullname = $user_firstname . " " . $user_lastname;
+
+                echo "<option value='{$fullname}'>{$username}</option>";
+            }
+            ?>
         </select>
-    </div> -->
+    </div>
 
     <div class="form-group">
         <input value="<?php echo $post_tags; ?>" class="form-control bg-light border-1 small" type="text" name="post_tags" placeholder="Tags">

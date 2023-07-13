@@ -61,7 +61,25 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-        <input class="form-control bg-light border-1 small" type="text" name="post_author" placeholder="Author">
+        <select class="form-control bg-light border-1 small" type="text" name="post_author">
+            <option value="none">Select User</option>
+            <?php
+            $query = "SELECT * FROM users";
+            $select_user = mysqli_query($connection, $query);
+
+            confirmQuery($select_user);
+
+            while ($row = mysqli_fetch_assoc($select_user)) {
+                $user_id = $row['user_id'];
+                $username = $row['username'];
+                $user_firstname = $row['user_firstname'];
+                $user_lastname = $row['user_lastname'];
+                $fullname = $user_firstname . " " . $user_lastname;
+
+                echo "<option value='{$fullname}'>{$username}</option>";
+            }
+            ?>
+        </select>
     </div>
 
     <div class="form-group">
