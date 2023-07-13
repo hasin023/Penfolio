@@ -40,20 +40,20 @@ if (isset($_POST['update_user'])) {
         <input value="<?php echo $user_lastname; ?>" class="form-control bg-light border-1 small" type="text" name="user_lastname" placeholder="Last Name">
     </div>
 
-     <div class="form-group">
+     <!-- <div class="form-group">
         <select class="form-control bg-light border-1 small" type="text" name="user_role">
         
         <?php
-        echo "<option value='{$user_role}'>" . ucfirst($user_role) . "</option>";
-
-        if ($user_role == 'admin') {
-            echo "<option value='subscriber'>Subscriber</option>";
-        } else {
-            echo "<option value='admin'>Admin</option>";
-        }
+        // echo "<option value='{$user_role}'>" . ucfirst($user_role) . "</option>";
+        
+        // if ($user_role == 'admin') {
+        //     echo "<option value='subscriber'>Subscriber</option>";
+        // } else {
+        //     echo "<option value='admin'>Admin</option>";
+        // }
         ?>
         </select>
-    </div>
+    </div> -->
 
 
 
@@ -66,7 +66,7 @@ if (isset($_POST['update_user'])) {
     </div>
 
     <div class="form-group">
-        <input value="<?php echo $user_password; ?>" class="form-control bg-light border-1 small" type="password" name="user_password" placeholder="Password">
+        <input class="form-control bg-light border-1 small" autocomplete="off" type="password" name="user_password" placeholder="Enter your Password">
     </div>
 
     <div class="form-group">

@@ -76,13 +76,13 @@ if (isset($_POST['update_post'])) {
         <input value="<?php echo $post_author; ?>" class="form-control bg-light border-1 small" type="text" name="post_author" placeholder="Author">
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <select class="form-control bg-light border-1 small" type="text" name="post_status">
             <option value="none">Select Status</option>
             <option value="draft">Draft</option>
             <option value="published">Published</option>
         </select>
-    </div>
+    </div> -->
 
     <div class="form-group">
         <input value="<?php echo $post_tags; ?>" class="form-control bg-light border-1 small" type="text" name="post_tags" placeholder="Tags">
