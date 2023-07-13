@@ -10,15 +10,15 @@
 
       <?php
       if (isset($_GET['category'])) {
-        $the_category_id = $_GET['category'];
+        $the_category_id = escape($_GET['category']);
       }
 
       $cat_query = "SELECT * FROM categories WHERE cat_id = $the_category_id";
       $select_categories = mysqli_query($connection, $cat_query);
 
       while ($row = mysqli_fetch_assoc($select_categories)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
+        $cat_id = escape($row['cat_id']);
+        $cat_title = escape($row['cat_title']);
 
         echo "<div class='row'>
               <div class='col-12'>
@@ -45,7 +45,7 @@
           $count = ceil($count / $per_page);
 
           if (isset($_GET['page'])) {
-            $page = $_GET['page'];
+            $page = escape($_GET['page']);
           } else {
             $page = "";
           }
@@ -68,13 +68,13 @@
           } else {
 
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-              $post_id = $row['post_id'];
-              $post_title = $row['post_title'];
-              $post_author = $row['post_author'];
-              $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+              $post_id = escape($row['post_id']);
+              $post_title = escape($row['post_title']);
+              $post_author = escape($row['post_author']);
+              $date = DateTime::createFromFormat('Y-m-d', escape($row['post_date']));
               $post_date = $date->format('F d, Y');
-              $post_image = $row['post_image'];
-              $post_content = substr($row['post_content'], 0, 250) . "...";
+              $post_image = escape($row['post_image']);
+              $post_content = substr(escape($row['post_content']), 0, 250) . "...";
 
               echo "
               <div class='blog-entry d-flex blog-entry-search-item'>

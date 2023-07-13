@@ -13,7 +13,7 @@ function insert_Categories()
     global $connection;
 
     if (isset($_POST['submit'])) {
-        $cat_title = $_POST['cat_title'];
+        $cat_title = escape($_POST['cat_title']);
 
         if (empty($cat_title) || $cat_title == "") {
             echo "<p class='text-danger'>Invalid Title</p>";
@@ -39,8 +39,8 @@ function showAllCategories()
     $select_categories = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_categories)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
+        $cat_id = escape($row['cat_id']);
+        $cat_title = escape($row['cat_title']);
 
         echo "<tr>
                 <td width='10%' class='text-dark'>$cat_id</td>
@@ -60,8 +60,8 @@ function getCategoryForPosts($post_category_id)
     $select_categories_id = mysqli_query($connection, $cat_query);
 
     while ($row = mysqli_fetch_assoc($select_categories_id)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
+        $cat_id = escape($row['cat_id']);
+        $cat_title = escape($row['cat_title']);
 
         return $cat_title;
 
@@ -77,17 +77,17 @@ function showAllPosts()
     $select_posts = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_posts)) {
-        $post_id = $row['post_id'];
-        $post_author = $row['post_author'];
-        $post_title = $row['post_title'];
-        $post_category_id = $row['post_category_id'];
-        $post_status = $row['post_status'];
-        $post_image = $row['post_image'];
-        $post_tags = $row['post_tags'];
+        $post_id = escape($row['post_id']);
+        $post_author = escape($row['post_author']);
+        $post_title = escape($row['post_title']);
+        $post_category_id = escape($row['post_category_id']);
+        $post_status = escape($row['post_status']);
+        $post_image = escape($row['post_image']);
+        $post_tags = escape($row['post_tags']);
         //$post_comment_counts = $row['post_comment_counts'];
-        $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+        $date = DateTime::createFromFormat('Y-m-d', escape($row['post_date']));
         $post_date = $date->format('F d, Y');
-        $post_views_count = $row['post_views_count'];
+        $post_views_count = escape($row['post_views_count']);
 
 
         echo "<tr>
@@ -128,13 +128,13 @@ function showAllComments()
     $select_comments = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_comments)) {
-        $comment_id = $row['comment_id'];
-        $comment_post_id = $row['comment_post_id'];
-        $comment_author = $row['comment_author'];
-        $comment_email = $row['comment_email'];
-        $comment_content = $row['comment_content'];
-        $comment_status = $row['comment_status'];
-        $date = DateTime::createFromFormat('Y-m-d', $row['comment_date']);
+        $comment_id = escape($row['comment_id']);
+        $comment_post_id = escape($row['comment_post_id']);
+        $comment_author = escape($row['comment_author']);
+        $comment_email = escape($row['comment_email']);
+        $comment_content = escape($row['comment_content']);
+        $comment_status = escape($row['comment_status']);
+        $date = DateTime::createFromFormat('Y-m-d', escape($row['comment_date']));
         $comment_date = $date->format('F d, Y');
 
 
@@ -147,8 +147,8 @@ function showAllComments()
         $select_post_title_query = mysqli_query($connection, $post_query);
 
         while ($row = mysqli_fetch_assoc($select_post_title_query)) {
-            $post_id = $row['post_id'];
-            $post_title = $row['post_title'];
+            $post_id = escape($row['post_id']);
+            $post_title = escape($row['post_title']);
 
             echo "<td class='text-dark text-center'><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
         }
@@ -172,7 +172,7 @@ function deleteCategory()
     global $connection;
 
     if (isset($_GET['delete'])) {
-        $delete_cat_id = $_GET['delete'];
+        $delete_cat_id = escape($_GET['delete']);
 
         $query = "DELETE FROM categories WHERE cat_id = {$delete_cat_id} ";
         $delete_category = mysqli_query($connection, $query);
@@ -195,16 +195,16 @@ function updatePost($the_post_id)
 {
     global $connection;
 
-    $post_title = $_POST['post_title'];
-    $post_category_id = $_POST['post_category_id'];
-    $post_author = $_POST['post_author'];
-    $post_status = $_POST['post_status'];
+    $post_title = escape($_POST['post_title']);
+    $post_category_id = escape($_POST['post_category_id']);
+    $post_author = escape($_POST['post_author']);
+    $post_status = escape($_POST['post_status']);
 
-    $post_image = $_FILES['post_image']['name'];
+    $post_image = escape($_FILES['post_image']['name']);
     $post_image_temp = $_FILES['post_image']['tmp_name'];
 
-    $post_tags = $_POST['post_tags'];
-    $post_content = $_POST['post_content'];
+    $post_tags = escape($_POST['post_tags']);
+    $post_content = escape($_POST['post_content']);
     $post_date = date('d-m-y');
 
 
@@ -215,7 +215,7 @@ function updatePost($the_post_id)
         $select_image = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_image)) {
-            $post_image = $row['post_image'];
+            $post_image = escape($row['post_image']);
         }
     }
 
@@ -246,13 +246,13 @@ function showAllUsers()
     $select_users = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_users)) {
-        $user_id = $row['user_id'];
-        $username = $row['username'];
-        $user_firstname = $row['user_firstname'];
-        $user_lastname = $row['user_lastname'];
-        $user_email = $row['user_email'];
-        $user_image = $row['user_image'];
-        $user_role = $row['user_role'];
+        $user_id = escape($row['user_id']);
+        $username = escape($row['username']);
+        $user_firstname = escape($row['user_firstname']);
+        $user_lastname = escape($row['user_lastname']);
+        $user_email = escape($row['user_email']);
+        $user_image = escape($row['user_image']);
+        $user_role = escape($row['user_role']);
 
         echo "<tr>
             <td class='text-dark text-center'>$user_id</td>

@@ -8,8 +8,8 @@
               <script>
                 document.write(new Date().getFullYear());
               </script>
-              . All Rights Reserved. &mdash; Designed with love by
-              <a href="https://untree.co">Untree.co</a> Distributed by
+              . All Rights Reserved. &mdash; Version updated by
+              <a href="https://github.com/hasin023">Hasin Mahtab</a> Distributed by
               <a href="https://themewagon.com">ThemeWagon</a>
             </p>
           </div>

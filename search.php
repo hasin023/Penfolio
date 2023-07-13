@@ -10,7 +10,7 @@
 				<?php
 
 				if (isset($_POST['search'])) {
-					$search = $_POST["search"];
+					$search = escape($_POST["search"]);
 
 					echo "<div class='heading'>Search: '$search'</div>";
 				}
@@ -28,7 +28,7 @@
 
 				if (isset($_POST['search'])) {
 
-					$search = $_POST["search"];
+					$search = escape($_POST["search"]);
 
 					$query = "SELECT * FROM posts WHERE post_status = 'published' AND post_tags LIKE '%$search%' OR post_title LIKE '%$search%' OR post_author LIKE '%$search%'";
 					$search_query = mysqli_query($connection, $query);
@@ -49,13 +49,13 @@
 
 
 						while ($row = mysqli_fetch_assoc($search_query)) {
-							$post_id = $row['post_id'];
-							$post_title = $row['post_title'];
-							$post_author = $row['post_author'];
-							$date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+							$post_id = escape($row['post_id']);
+							$post_title = escape($row['post_title']);
+							$post_author = escape($row['post_author']);
+							$date = DateTime::createFromFormat('Y-m-d', escape($row['post_date']));
 							$post_date = $date->format('F d, Y');
-							$post_image = $row['post_image'];
-							$post_content = substr($row['post_content'], 0, 250) . "...";
+							$post_image = escape($row['post_image']);
+							$post_content = substr(escape($row['post_content']), 0, 250) . "...";
 
 							echo "
 								<div class='blog-entry d-flex blog-entry-search-item'>

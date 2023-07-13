@@ -24,11 +24,11 @@
         $select_all_posts_query = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-            $post_id = $row['post_id'];
-            $post_title = $row['post_title'];
-            $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+            $post_id = escape($row['post_id']);
+            $post_title = escape($row['post_title']);
+            $date = DateTime::createFromFormat('Y-m-d', escape($row['post_date']));
             $post_date = $date->format('F d, Y');
-            $post_image = $row['post_image'];
+            $post_image = escape($row['post_image']);
 
 
             echo "<li>
@@ -61,8 +61,8 @@
     $select_all_categories_query = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
+        $cat_id = escape($row['cat_id']);
+        $cat_title = escape($row['cat_title']);
 
         echo "<li>
                 <a href='category.php?category=$cat_id'>$cat_title</a>

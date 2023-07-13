@@ -5,7 +5,7 @@
 <?php
 
 if (isset($_GET['p_id'])) {
-  $the_post_id = $_GET['p_id'];
+  $the_post_id = escape($_GET['p_id']);
 }
 
 $view_query = "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = $the_post_id";
@@ -21,13 +21,13 @@ $query = "SELECT * FROM posts WHERE post_id = $the_post_id";
 $select_post_query = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($select_post_query)) {
-  $post_id = $row['post_id'];
-  $post_title = $row['post_title'];
-  $post_author = $row['post_author'];
-  $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+  $post_id = escape($row['post_id']);
+  $post_title = escape($row['post_title']);
+  $post_author = escape($row['post_author']);
+  $date = DateTime::createFromFormat('Y-m-d', escape($row['post_date']));
   $post_date = $date->format('F d, Y');
-  $post_image = $row['post_image'];
-  $post_content = $row['post_content'];
+  $post_image = escape($row['post_image']);
+  $post_content = escape($row['post_content']);
 
 
   echo "  

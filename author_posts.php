@@ -10,8 +10,8 @@
 
       <?php
       if (isset($_GET['p_id'])) {
-        $the_post_id = $_GET['p_id'];
-        $author = $_GET['author'];
+        $the_post_id = escape($_GET['p_id']);
+        $author = escape($_GET['author']);
 
       }
 
@@ -19,8 +19,8 @@
       $select_post_query = mysqli_query($connection, $author_query);
 
       while ($row = mysqli_fetch_assoc($select_post_query)) {
-        $post_id = $row['post_id'];
-        $post_author = $row['post_author'];
+        $post_id = escape($row['post_id']);
+        $post_author = escape($row['post_author']);
       }
 
       echo "<div class='row'>
@@ -39,8 +39,8 @@
           <?php
 
           if (isset($_GET['p_id'])) {
-            $the_post_id = $_GET['p_id'];
-            $author = $_GET['author'];
+            $the_post_id = escape($_GET['p_id']);
+            $author = escape($_GET['author']);
 
           }
 
@@ -58,13 +58,13 @@
           } else {
 
             while ($row = mysqli_fetch_assoc($select_post_query)) {
-              $post_id = $row['post_id'];
-              $post_title = $row['post_title'];
-              $post_author = $row['post_author'];
-              $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+              $post_id = escape($row['post_id']);
+              $post_title = escape($row['post_title']);
+              $post_author = escape($row['post_author']);
+              $date = DateTime::createFromFormat('Y-m-d', escape($row['post_date']));
               $post_date = $date->format('F d, Y');
-              $post_image = $row['post_image'];
-              $post_content = substr($row['post_content'], 0, 250) . "...";
+              $post_image = escape($row['post_image']);
+              $post_content = substr(escape($row['post_content']), 0, 250) . "...";
 
               $cat_query = "SELECT * FROM categories WHERE cat_id = {$row['post_category_id']}";
               $select_categories = mysqli_query($connection, $cat_query);
@@ -72,8 +72,8 @@
               confirmQuery($select_categories);
 
               while ($row = mysqli_fetch_assoc($select_categories)) {
-                $cat_id = $row['cat_id'];
-                $cat_title = $row['cat_title'];
+                $cat_id = escape($row['cat_id']);
+                $cat_title = escape($row['cat_title']);
               }
 
               echo "
