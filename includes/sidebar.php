@@ -33,7 +33,7 @@
 
             echo "<li>
                         <a href='post.php?p_id=$post_id'>
-                        <img src='images/$post_image' alt='Image placeholder' class='mr-4'>
+                        <img src='images/$post_image' alt='Image placeholder' class='mx-3' style='border-radius: 0.3rem;'>
                         <div class='ml-6 text'>
                             <h4>$post_title</h4>
                             <div class='post-meta'>

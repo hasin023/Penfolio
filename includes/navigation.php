@@ -64,6 +64,8 @@
 
                 ?>
 
+              <li><a href="contact.php">Contact</a></li>
+
             </ul>
           </div>
           <div class="col-2 text-end">
