@@ -16,7 +16,7 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $post_tags = escape($row['post_tags']);
     $post_content = escape($row['post_content']);
     $post_comment_counts = escape($row['post_comment_counts']);
-    $date = DateTime::createFromFormat('Y-m-d', $row['post_date']);
+    $date = DateTime::createFromFormat('Y-m-d', escape($row['post_date']));
     $post_date = $date->format('F d, Y');
 }
 
@@ -96,7 +96,7 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-        <textarea text="<?php echo $post_content; ?>" class="form-control bg-light border-1 small" name="post_content" id="summernote" placeholder="Write the contents of the post.." cols="30" rows="10"><?php echo $post_content; ?></textarea>
+        <textarea text="<?php echo $post_content; ?>" class="form-control bg-light border-1 small" name="post_content" id="summernote" placeholder="Write the contents of the post.." cols="30" rows="10"><?php echo str_replace('\r\n', '</br>', $post_content); ?></textarea>
     </div>
 
     <div class="form-group">

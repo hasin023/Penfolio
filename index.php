@@ -58,7 +58,7 @@
           $date = DateTime::createFromFormat('Y-m-d', escape($row['post_date']));
           $post_date = $date->format('F d, Y');
           $post_image = escape($row['post_image']);
-          $post_content = substr(escape($row['post_content']), 0, 80) . "...";
+          $post_content = substr(escape($row['post_content']), 0, 100) . "...";
           $post_status = escape($row['post_status']);
 
           $cat_query = "SELECT * FROM categories WHERE cat_id = {$row['post_category_id']}";

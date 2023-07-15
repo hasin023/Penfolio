@@ -28,14 +28,14 @@ if (isset($_POST['checkBoxArray'])) {
                 $select_post_query = mysqli_query($connection, $query);
 
                 while ($row = mysqli_fetch_array($select_post_query)) {
-                    $post_title = $row['post_title'];
-                    $post_category_id = $row['post_category_id'];
-                    $post_date = $row['post_date'];
-                    $post_author = $row['post_author'];
-                    $post_status = $row['post_status'];
-                    $post_image = $row['post_image'];
-                    $post_tags = $row['post_tags'];
-                    $post_content = $row['post_content'];
+                    $post_title = escape($row['post_title']);
+                    $post_category_id = escape($row['post_category_id']);
+                    $post_date = escape($row['post_date']);
+                    $post_author = escape($row['post_author']);
+                    $post_status = escape($row['post_status']);
+                    $post_image = escape($row['post_image']);
+                    $post_tags = escape($row['post_tags']);
+                    $post_content = escape($row['post_content']);
                 }
 
                 $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
