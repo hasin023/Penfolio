@@ -43,20 +43,6 @@ if (isset($_POST['update_post'])) {
         <select class="form-control bg-light border-1 small" type="text" name="post_category_id">
 
         <?php
-        $one_query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
-        $select_category = mysqli_query($connection, $one_query);
-
-        confirmQuery($select_category);
-
-        while ($row = mysqli_fetch_assoc($select_category)) {
-            $cat_id = escape($row['cat_id']);
-            $cat_title = escape($row['cat_title']);
-
-            echo "<option value='{$cat_id}'>{$cat_title}</option>";
-        }
-        ?>
-
-        <?php
         $query = "SELECT * FROM categories";
         $select_categories = mysqli_query($connection, $query);
 
@@ -66,8 +52,13 @@ if (isset($_POST['update_post'])) {
             $cat_id = escape($row['cat_id']);
             $cat_title = escape($row['cat_title']);
 
-            echo "<option value='{$cat_id}'>{$cat_title}</option>";
+            if ($cat_id == $post_category_id) {
+                echo "<option value='{$cat_id}' selected>{$cat_title}</option>";
+            } else {
+                echo "<option value='{$cat_id}'>{$cat_title}</option>";
+            }
         }
+
         ?>
         </select>
     </div>
