@@ -55,3 +55,56 @@
   background-repeat: no-repeat;
   background-position: center;
 } */
+
+ul {
+  list-style-type: none;
+}
+
+.page {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  height: 2rem;
+  margin: 2rem;
+  background: #fff;
+}
+.page__numbers,
+.page__btn,
+.page__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.page__numbers {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.4rem;
+}
+.page__numbers:hover {
+  color: #ffffff;
+}
+
+.page__link {
+  color: #333;
+  text-decoration: none;
+}
+
+.page__link:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.page__numbers.active {
+  color: #ffffff;
+  background: var(--primary);
+  font-weight: 600;
+  border: 1px solid var(--primary);
+}
+
+.page__numbers.active .page__link {
+  color: #ffffff;
+}

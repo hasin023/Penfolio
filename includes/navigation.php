@@ -24,7 +24,7 @@
             >
               <li class="active"><a href="index.php">Home</a></li>
               <li class="has-children">
-                <a href="category.php">Categories</a>
+                <a href="#">Categories</a>
                 <ul class="dropdown">
 
 

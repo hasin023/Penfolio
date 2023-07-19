@@ -96,7 +96,75 @@ if (isset($_POST['checkBoxArray'])) {
                     </thead>
                     <tbody>
 
-                    <?php showAllPosts(); ?>
+                    <?php
+
+                    $per_page = 6;
+
+                    $post_count_query = "SELECT * FROM posts WHERE post_status = 'published'";
+                    $find_count = mysqli_query($connection, $post_count_query);
+
+                    $count = mysqli_num_rows($find_count);
+                    $count = ceil($count / $per_page);
+
+                    if (isset($_GET['page'])) {
+                        $page = escape($_GET['page']);
+                    } else {
+                        $page = "";
+                    }
+
+                    if ($page == "" || $page == 1) {
+                        $page_1 = 0;
+                    } else {
+                        $page_1 = ($page * $per_page) - $per_page;
+                    }
+
+                    $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_1, $per_page";
+                    //$query = "SELECT * FROM posts";
+                    $select_posts = mysqli_query($connection, $query);
+
+                    while ($row = mysqli_fetch_assoc($select_posts)) {
+                        $post_id = escape($row['post_id']);
+                        $post_author = escape($row['post_author']);
+                        $post_title = escape($row['post_title']);
+                        $post_category_id = escape($row['post_category_id']);
+                        $post_status = escape($row['post_status']);
+                        $post_image = escape($row['post_image']);
+                        $post_tags = escape($row['post_tags']);
+                        //$post_comment_counts = $row['post_comment_counts'];
+                        $date = DateTime::createFromFormat('Y-m-d', escape($row['post_date']));
+                        $post_date = $date->format('F d, Y');
+                        $post_views_count = escape($row['post_views_count']);
+
+
+                        echo "<tr>
+                        <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='$post_id'></td>
+                        <td class='text-dark text-center'>$post_id</td>
+                        <td class='text-dark text-center'>$post_author</td>
+                        <td class='text-dark text-center'>$post_title</td>" .
+
+                            "<td class='text-dark text-center'>" . getCategoryForPosts($post_category_id) . "</td>"
+
+                            . "<td class='text-dark text-center'>$post_status</td>
+                        <td class='text-dark text-center'><img class='img-fluid' src='../images/$post_image' alt='Post_Image'></td>
+                        <td class='text-dark text-center'>$post_tags</td>";
+
+                        $comment_query = "SELECT * FROM comments WHERE comment_post_id = $post_id ";
+                        $send_comment_query = mysqli_query($connection, $comment_query);
+                        $row = mysqli_fetch_array($send_comment_query);
+                        $count_comments = mysqli_num_rows($send_comment_query);
+
+                        echo "<td class='text-dark text-center'>$count_comments</td>";
+
+
+                        echo "<td class='text-dark text-center'>$post_date</td>
+                        <td class='text-dark text-center'><a href='posts.php?reset={$post_id}'>$post_views_count</a></td>
+                        <td width='5%'><a href='posts.php?source=edit_post&p_id={$post_id}' class='btn btn-warning'>EDIT</a></td>
+                        <td width='5%'><a onclick=\"javascript: return confirm('Do you really want to delete the post?')\" href='posts.php?delete={$post_id}' class='btn btn-danger'>DELETE</a></td>
+                        </tr>";
+                    }
+
+
+                    ?>
 
                     </tbody>
                 </table>
@@ -141,6 +209,23 @@ if (isset($_POST['checkBoxArray'])) {
 
 
             ?>
+
+
+ 
+            <ul class="page">
+
+                <?php
+
+                for ($i = 1; $i <= $count; $i++) {
+                    if ($i == $page) {
+                        echo "<li class='page__numbers active'><a class='page__link' href='posts.php?page={$i}'>{$i}</a></li>";
+                    } else {
+                        echo "<li class='page__numbers'><a class='page__link' href='posts.php?page={$i}'>{$i}</a></li>";
+                    }
+                }
+
+                ?>
+            </ul>
 
             
         </div>
