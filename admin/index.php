@@ -24,6 +24,33 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+
+
+                        <?php
+                        // require '../vendor/autoload.php';
+                        
+                        // // reference the Dompdf namespace
+                        // use Dompdf\Dompdf;
+                        
+                        // // instantiate and use the dompdf class
+                        // $dompdf = new Dompdf();
+                        
+                        // // Load html contect from file
+                        // $dompdf->loadHtml("index.php");
+                        
+                        // // (Optional) Setup the paper size and orientation
+                        // $dompdf->setPaper('A4', 'landscape');
+                        
+                        // // Render the HTML as PDF
+                        // $dompdf->render();
+                        
+                        // // Output the generated PDF to Browser
+                        // $dompdf->stream('Report.pdf');
+                        
+
+                        ?>
+
+
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
