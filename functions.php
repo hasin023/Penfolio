@@ -300,10 +300,6 @@ function updateUser($the_user_id)
     $user_password = hash("sha512", $user_password);
 
 
-    //NEED TO MAKE THE PICTURE SQUARE AND SELECT THE MIDDLE PART BEFORE COPYING IT TO THE IMAGES FOLDER
-    // cropImage(createimagefromfile($user_image_temp), 500, 500);
-    // $cropped_image = strval(cropImage(createimagefromfile($user_image_temp), 500, 500));
-
     move_uploaded_file($user_image_temp, "images/users/$user_image");
 
     $query = "UPDATE users SET ";
@@ -325,34 +321,6 @@ function updateUser($the_user_id)
 
     header("Location: users.php");
 }
-
-// function createimagefromfile($user_image_temp)
-// {
-//     $image = imagecreatefromjpeg($user_image_temp);
-//     $filename = 'images/users/$user_image';
-//     imagejpeg($image, $filename, 100);
-//     imagedestroy($image);
-// }
-
-
-// function cropImage($image, $cropWidth, $cropHeight, $horizontalAlign = 'center', $verticalAlign = 'middle')
-// {
-//     $width = imagesx($image);
-//     $height = imagesy($image);
-//     $centreX = round($width / 2);
-//     $centreY = round($height / 2);
-
-//     $cropWidth = 200;
-//     $cropHeight = 130;
-//     $cropWidthHalf = round($cropWidth / 2);
-//     $cropHeightHalf = round($cropHeight / 2);
-
-//     $x1 = max(0, $centreX - $cropWidthHalf);
-//     $y1 = max(0, $centreY - $cropHeightHalf);
-
-//     $x2 = min($width, $centreX + $cropWidthHalf);
-//     $y2 = min($height, $centreY + $cropHeightHalf);
-// }
 
 function users_online()
 {
